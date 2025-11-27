@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Smart Mailbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 m-0 p-0">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="hidden md:flex md:w-20 bg-white shadow-lg flex-col items-center py-6 space-y-8">
+            <a href="#" class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-white hover:bg-blue-600 transition">
+                <i class="fas fa-envelope text-xl"></i>
+            </a>
+            
+            <a href="dashboard.html" class="w-12 h-12 flex items-center justify-center text-blue-500 bg-blue-50 rounded-xl transition">
+                <i class="fas fa-chart-line text-xl"></i>
+            </a>
+            
+            <a href="all_mail.html" class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition">
+                <i class="fas fa-inbox text-xl"></i>
+            </a>
+            
+            <a href="classify_mail.html" class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition">
+                <i class="fas fa-file-alt text-xl"></i>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 w-full overflow-x-hidden">
+            
+            <!-- Mobile Header -->
+            <div class="md:hidden bg-white shadow-sm px-4 py-4 flex items-center justify-between">
+                <button id="mobile-sidebar-btn" class="text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <h1 class="text-lg font-bold text-gray-900">Dashboard</h1>
+                <div class="w-6"></div>
+            </div>
+
+            <!-- Page Header -->
+            <div class="px-4 md:px-8 lg:px-12 py-6 md:py-8">
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Dashboard</h1>
+                <p class="text-sm md:text-base text-gray-600 flex items-center">
+                    <span class="mr-2">👋</span>
+                    Welcome back! Here's a quick overview of your email activity.
+                </p>
+            </div>
+
+            <!-- Overview Section -->
+            <div class="px-4 md:px-8 lg:px-12 mb-8">
+                <h2 class="text-lg md:text-xl font-semibold text-gray-400 mb-4">Overview</h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    
+                    <!-- Card 1: Total Mails -->
+                    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-envelope text-green-500"></i>
+                            </div>
+                            <span class="text-gray-600 font-medium">Total mails</span>
+                        </div>
+                        <div class="flex items-end justify-between">
+                            <h3 class="text-3xl font-bold text-gray-900">7,232</h3>
+                            <div class="flex items-center space-x-1 text-green-500 text-sm">
+                                <span>+11.01%</span>
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: New Mail -->
+                    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-envelope-open text-blue-500"></i>
+                            </div>
+                            <span class="text-gray-600 font-medium">New mail</span>
+                        </div>
+                        <div class="flex items-end justify-between">
+                            <h3 class="text-3xl font-bold text-gray-900">7,232</h3>
+                            <div class="flex items-center space-x-1 text-green-500 text-sm">
+                                <span>+11.01%</span>
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Promotion -->
+                    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-tag text-red-500"></i>
+                            </div>
+                            <span class="text-gray-600 font-medium">Promotion</span>
+                        </div>
+                        <div class="flex items-end justify-between">
+                            <h3 class="text-3xl font-bold text-gray-900">7,232</h3>
+                            <div class="flex items-center space-x-1 text-green-500 text-sm">
+                                <span>+11.01%</span>
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Business -->
+                    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-briefcase text-yellow-500"></i>
+                            </div>
+                            <span class="text-gray-600 font-medium">Business</span>
+                        </div>
+                        <div class="flex items-end justify-between">
+                            <h3 class="text-3xl font-bold text-gray-900">7,232</h3>
+                            <div class="flex items-center space-x-1 text-green-500 text-sm">
+                                <span>+11.01%</span>
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="px-4 md:px-8 lg:px-12 mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Total Mail Chart -->
+                    <div class="lg:col-span-2 bg-white rounded-2xl shadow-md p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-bold text-gray-900">Total mail</h3>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 bg-blue-500 rounded-full"></span>
+                                <span class="text-sm text-gray-600">Mail</span>
+                            </div>
+                        </div>
+                        <div class="h-64 md:h-80">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Recent Mail -->
+                    <div class="bg-white rounded-2xl shadow-md p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-bold text-gray-900">Recent mail</h3>
+                            <div class="flex items-center space-x-2">
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <!-- Mail Item 1 -->
+                            <div class="pb-4 border-b border-gray-100">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900 text-sm">Meiliang Chang</h4>
+                                    <span class="text-xs text-gray-500">12:00 AM</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mb-2 line-clamp-2">
+                                    Bro, I just realized life is 90% vibes and 10% trying not to fall of...
+                                </p>
+                                <span class="inline-block px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">Business</span>
+                            </div>
+
+                            <!-- Mail Item 2 -->
+                            <div class="pb-4 border-b border-gray-100">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900 text-sm">Kean hak</h4>
+                                    <span class="text-xs text-gray-500">12:00 AM</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mb-2 line-clamp-2">
+                                    Bro, I just realized life is 90% vibes and 10% trying not to fall of...
+                                </p>
+                                <span class="inline-block px-2 py-1 bg-red-100 text-red-700 text-xs rounded-full">Promotion</span>
+                            </div>
+
+                            <!-- Mail Item 3 -->
+                            <div class="pb-4">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900 text-sm">Ten Meng</h4>
+                                    <span class="text-xs text-gray-500">12:00 AM</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mb-2 line-clamp-2">
+                                    Bro, I just realized life is 90% vibes and 10% trying not...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Insight Summary Section -->
+            <div class="px-4 md:px-8 lg:px-12 pb-8">
+                <h2 class="text-lg md:text-xl font-semibold text-gray-300 mb-6">Insight summary</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- Trending Label Chart -->
+                    <div class="bg-gray-50 rounded-2xl shadow-sm p-6 md:p-8">
+                        <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-8">Trending label</h3>
+                        <div class="h-72 md:h-80">
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Mail Distribution Chart -->
+                    <div class="bg-blue-50 rounded-2xl shadow-sm p-6 md:p-8">
+                        <h3 class="text-lg md:text-xl font-bold text-gray-900 mb-8">Mail Distribution</h3>
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div class="w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
+                                <canvas id="doughnutChart"></canvas>
+                            </div>
+                            <div class="space-y-4 w-full md:w-auto">
+                                <div class="flex items-center justify-between md:justify-start md:space-x-12">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="w-3 h-3 bg-gray-800 rounded-full"></span>
+                                        <span class="text-sm md:text-base text-gray-700">Category 1</span>
+                                    </div>
+                                    <span class="text-sm md:text-base font-semibold text-gray-900">52.1%</span>
+                                </div>
+                                <div class="flex items-center justify-between md:justify-start md:space-x-12">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="w-3 h-3 bg-blue-400 rounded-full"></span>
+                                        <span class="text-sm md:text-base text-gray-700">Category 2</span>
+                                    </div>
+                                    <span class="text-sm md:text-base font-semibold text-gray-900">22.8%</span>
+                                </div>
+                                <div class="flex items-center justify-between md:justify-start md:space-x-12">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="w-3 h-3 bg-green-400 rounded-full"></span>
+                                        <span class="text-sm md:text-base text-gray-700">Category 3</span>
+                                    </div>
+                                    <span class="text-sm md:text-base font-semibold text-gray-900">13.9%</span>
+                                </div>
+                                <div class="flex items-center justify-between md:justify-start md:space-x-12">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="w-3 h-3 bg-purple-300 rounded-full"></span>
+                                        <span class="text-sm md:text-base text-gray-700">Other</span>
+                                    </div>
+                                    <span class="text-sm md:text-base font-semibold text-gray-900">11.2%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div id="mobile-sidebar" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
+        <div class="bg-white w-64 h-full shadow-xl p-6">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-xl font-bold text-gray-900">Menu</h2>
+                <button id="close-sidebar" class="text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <nav class="space-y-4">
+                <a href="#" class="flex items-center space-x-3 text-blue-500 bg-blue-50 px-4 py-3 rounded-lg">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition">
+                    <i class="fas fa-inbox"></i>
+                    <span>Inbox</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Classify Mail</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Mobile sidebar toggle
+        const mobileSidebarBtn = document.getElementById('mobile-sidebar-btn');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const closeSidebar = document.getElementById('close-sidebar');
+
+        if (mobileSidebarBtn) {
+            mobileSidebarBtn.addEventListener('click', () => {
+                mobileSidebar.classList.remove('hidden');
+            });
+        }
+
+        if (closeSidebar) {
+            closeSidebar.addEventListener('click', () => {
+                mobileSidebar.classList.add('hidden');
+            });
+        }
+
+        mobileSidebar?.addEventListener('click', (e) => {
+            if (e.target === mobileSidebar) {
+                mobileSidebar.classList.add('hidden');
+            }
+        });
+
+        // Line Chart - Total Mail
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['22 Jan', '23 Jan', '24 Jan', '25 Jan', '26 Jan', '27 Jan', '28 Jan'],
+                datasets: [{
+                    label: 'Mail',
+                    data: [30, 20, 35, 50, 95, 65, 75],
+                    borderColor: '#60A5FA',
+                    backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 0,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: { stepSize: 50 }
+                    }
+                }
+            }
+        });
+
+        // Bar Chart - Trending Label
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Cat1', 'Cat2', 'Cat3', 'Cat4', 'Cat5', 'Other'],
+                datasets: [{
+                    data: [200, 500, 300, 550, 150, 400],
+                    backgroundColor: [
+                        '#93C5FD',
+                        '#6EE7B7',
+                        '#1F2937',
+                        '#60A5FA',
+                        '#C084FC',
+                        '#86EFAC'
+                    ],
+                    borderRadius: 8,
+                    barThickness: 40
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 600,
+                        ticks: { stepSize: 250 }
+                    }
+                }
+            }
+        });
+
+        // Doughnut Chart - Mail Distribution
+        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+        new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Category 1', 'Category 2', 'Category 3', 'Other'],
+                datasets: [{
+                    data: [52.1, 22.8, 13.9, 11.2],
+                    backgroundColor: [
+                        '#1F2937',
+                        '#60A5FA',
+                        '#86EFAC',
+                        '#C084FC'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                cutout: '65%'
+            }
+        });
+    </script>
+
+</body>
+</html>

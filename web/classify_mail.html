@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classify Mail - Smart Mailbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 m-0 p-0">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="hidden md:flex md:w-20 bg-white shadow-lg flex-col items-center py-6 space-y-8">
+            <!-- Logo/Home Icon -->
+            <a href="#" class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-white hover:bg-blue-600 transition">
+                <i class="fas fa-envelope text-xl"></i>
+            </a>
+            
+            <!-- Navigation Icons -->
+            <a href="dashboard.html" class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition">
+                <i class="fas fa-chart-line text-xl"></i>
+            </a>
+            
+            <a href="all_mail.html" class="w-12 h-12 flex items-center justify-center text-blue-500 bg-blue-50 rounded-xl transition">
+                <i class="fas fa-inbox text-xl"></i>
+            </a>
+            
+            <a href="classify_mail.html" class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition">
+                <i class="fas fa-file-alt text-xl"></i>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 w-full">
+            <!-- Mobile Header -->
+            <div class="md:hidden bg-white shadow-sm px-4 py-4 flex items-center justify-between">
+                <button id="mobile-sidebar-btn" class="text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <h1 class="text-lg font-bold text-gray-900">Classify Mail</h1>
+                <div class="w-6"></div>
+            </div>
+
+            <!-- Page Header -->
+            <div class="px-4 md:px-8 lg:px-12 py-6 md:py-8">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Classify Mail</h1>
+            </div>
+
+            <!-- Info Banner -->
+            <div class="px-4 md:px-8 lg:px-12 mb-6">
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 md:p-8 shadow-lg">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-envelope-open-text text-white text-xl"></i>
+                        </div>
+                        <div class="text-white">
+                            <h2 class="text-xl md:text-2xl font-bold mb-2">Classify your mail</h2>
+                            <p class="text-sm md:text-base text-blue-50">
+                                Paste your email details below and our AI model will automatically classify it into the appropriate category. The email will be added to your inbox with the assigned label.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="px-4 md:px-8 lg:px-12 pb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+                    
+                    <!-- Left Column - Email Form -->
+                    <div class="bg-white rounded-2xl shadow-md p-6 md:p-8">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">Email detail</h3>
+                        
+                        <form id="classify-form" class="space-y-5">
+                            <!-- Email Title -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Email title <span class="text-red-500">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="email-title"
+                                    placeholder="Enter email title"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                                    required
+                                >
+                            </div>
+
+                            <!-- Sender -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Sender <span class="text-red-500">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="sender"
+                                    placeholder="Enter sender"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                                    required
+                                >
+                            </div>
+
+                            <!-- Receive Time -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Receive time <span class="text-red-500">*</span>
+                                </label>
+                                <input 
+                                    type="datetime-local" 
+                                    id="receive-time"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                                    required
+                                >
+                            </div>
+
+                            <!-- Email Content -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                    Email content <span class="text-red-500">*</span>
+                                </label>
+                                <textarea 
+                                    id="email-content"
+                                    rows="8"
+                                    placeholder="Paste your mail content here..."
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="pt-2">
+                                <button 
+                                    type="submit"
+                                    class="w-full md:w-auto px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transition flex items-center justify-center space-x-2"
+                                >
+                                    <span>Classify mail</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Column - Classification Result -->
+                    <div class="bg-white rounded-2xl shadow-md p-6 md:p-8">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">Classification Result</h3>
+                        
+                        <!-- Empty State -->
+                        <div id="empty-state" class="flex flex-col items-center justify-center py-12 md:py-16">
+                            <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                                <i class="fas fa-envelope text-gray-300 text-4xl"></i>
+                            </div>
+                            <p class="text-gray-400 text-center text-sm">
+                                Fill in the email details and click "Classify Email" to see the result
+                            </p>
+                        </div>
+
+                        <!-- Result State (hidden by default) -->
+                        <div id="result-state" class="hidden space-y-4">
+                            <!-- Classification Labels -->
+                            <div class="space-y-3">
+                                <h4 class="text-sm font-semibold text-gray-700 mb-3">Predicted Categories:</h4>
+                                <div id="result-labels" class="flex flex-wrap gap-2">
+                                    <!-- Labels will be added here dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Confidence Scores -->
+                            <div class="pt-4">
+                                <h4 class="text-sm font-semibold text-gray-700 mb-3">Confidence Scores:</h4>
+                                <div id="result-scores" class="space-y-2">
+                                    <!-- Scores will be added here dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Email Details -->
+                            <div class="pt-4 border-t border-gray-200">
+                                <h4 class="text-sm font-semibold text-gray-700 mb-3">Email Information:</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Title:</span>
+                                        <span id="result-title" class="font-medium text-gray-900"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Sender:</span>
+                                        <span id="result-sender" class="font-medium text-gray-900"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Time:</span>
+                                        <span id="result-time" class="font-medium text-gray-900"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div id="mobile-sidebar" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
+        <div class="bg-white w-64 h-full shadow-xl p-6">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-xl font-bold text-gray-900">Menu</h2>
+                <button id="close-sidebar" class="text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <nav class="space-y-4">
+                <a href="#" class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 text-blue-500 bg-blue-50 px-4 py-3 rounded-lg">
+                    <i class="fas fa-inbox"></i>
+                    <span>Classify Mail</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Reports</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Mobile sidebar toggle
+        const mobileSidebarBtn = document.getElementById('mobile-sidebar-btn');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const closeSidebar = document.getElementById('close-sidebar');
+
+        if (mobileSidebarBtn) {
+            mobileSidebarBtn.addEventListener('click', () => {
+                mobileSidebar.classList.remove('hidden');
+            });
+        }
+
+        if (closeSidebar) {
+            closeSidebar.addEventListener('click', () => {
+                mobileSidebar.classList.add('hidden');
+            });
+        }
+
+        mobileSidebar.addEventListener('click', (e) => {
+            if (e.target === mobileSidebar) {
+                mobileSidebar.classList.add('hidden');
+            }
+        });
+
+        // Form submission
+        const form = document.getElementById('classify-form');
+        const emptyState = document.getElementById('empty-state');
+        const resultState = document.getElementById('result-state');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const emailTitle = document.getElementById('email-title').value;
+            const sender = document.getElementById('sender').value;
+            const receiveTime = document.getElementById('receive-time').value;
+            const emailContent = document.getElementById('email-content').value;
+
+            // Mock classification (replace with actual API call)
+            const mockCategories = ['Work', 'Important'];
+            const mockScores = {
+                'Work': 0.89,
+                'Personal': 0.12,
+                'Promotions': 0.05,
+                'Important': 0.76
+            };
+
+            // Show result
+            emptyState.classList.add('hidden');
+            resultState.classList.remove('hidden');
+
+            // Update labels
+            const labelsContainer = document.getElementById('result-labels');
+            labelsContainer.innerHTML = mockCategories.map(cat => 
+                `<span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">${cat}</span>`
+            ).join('');
+
+            // Update scores
+            const scoresContainer = document.getElementById('result-scores');
+            scoresContainer.innerHTML = Object.entries(mockScores).map(([category, score]) => {
+                const percentage = (score * 100).toFixed(1);
+                return `
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-gray-700">${category}</span>
+                            <span class="font-medium text-gray-900">${percentage}%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full transition-all" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Update email details
+            document.getElementById('result-title').textContent = emailTitle;
+            document.getElementById('result-sender').textContent = sender;
+            document.getElementById('result-time').textContent = new Date(receiveTime).toLocaleString();
+        });
+    </script>
+
+</body>
+</html>
