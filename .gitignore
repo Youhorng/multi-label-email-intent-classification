@@ -10,3 +10,12 @@ wheels/
 .venv
 
 *.DS_Store
+
+node_modules/
+
+notebooks/encoder_only_finetuning/outputs/
+*.bin
+*.safetensors
+
+# Hugging Face model repositories (embedded git repos)
+distilbert-lora-multilabel-email-intent-classification/
