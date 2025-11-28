@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inbox - Smart Mailbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-50 m-0 p-0">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="hidden md:flex md:w-20 bg-white shadow-lg flex-col items-center py-6 space-y-8 fixed left-0 top-0 h-screen z-30"
+      >
+        <a
+          href="#"
+          class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-white hover:bg-blue-600 transition"
+        >
+          <i class="fas fa-envelope text-xl"></i>
+        </a>
+
+        <a
+          href="dashboard.html"
+          class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition"
+        >
+          <i class="fas fa-chart-line text-xl"></i>
+        </a>
+
+        <a
+          href="all_mail.html"
+          class="w-12 h-12 flex items-center justify-center text-blue-500 bg-blue-50 rounded-xl transition"
+        >
+          <i class="fas fa-inbox text-xl"></i>
+        </a>
+
+        <a
+          href="classify_mail.html"
+          class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition"
+        >
+          <i class="fas fa-file-alt text-xl"></i>
+        </a>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 w-full flex md:ml-20">
+        <!-- Email List Panel -->
+        <div
+          class="w-full md:w-80 lg:w-96 bg-white border-r border-gray-200 flex flex-col md:fixed md:left-20 md:top-0 md:h-screen md:z-20"
+        >
+          <!-- Mobile Header -->
+          <div
+            class="md:hidden bg-white shadow-sm px-4 py-4 flex items-center justify-between border-b"
+          >
+            <button id="mobile-sidebar-btn" class="text-gray-600">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+            <h1 class="text-lg font-bold text-gray-900">Inbox</h1>
+            <div class="w-6"></div>
+          </div>
+
+          <!-- Header -->
+          <div class="p-4 md:p-6 border-b border-gray-200">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              Inbox
+            </h1>
+
+            <!-- Search Bar -->
+            <div class="relative">
+              <input
+                type="text"
+                placeholder="Search mail..."
+                class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm"
+              />
+              <i
+                class="fas fa-search absolute left-3 top-3.5 text-gray-400"
+              ></i>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex items-center space-x-4 mt-4">
+              <button
+                class="flex items-center space-x-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
+              >
+                <i class="fas fa-tags text-gray-600"></i>
+                <span class="text-gray-700">All labels</span>
+              </button>
+              <button
+                class="flex items-center space-x-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
+              >
+                <i class="fas fa-sort text-gray-600"></i>
+                <span class="text-gray-700">Newest</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Email List -->
+          <div id="email-list" class="flex-1 overflow-y-auto">
+            <!-- Email items will be render here -->
+          </div>
+        </div>
+
+        <!-- Email Detail Panel (Hidden on Mobile) -->
+        <div
+          id="email-detail"
+          class="hidden md:flex flex-1 flex-col bg-white md:ml-80 lg:ml-96"
+        >
+          <!-- Email Header -->
+          <div class="p-6 border-b border-gray-200">
+            <div class="flex items-start justify-between mb-4">
+              <h2 id="email-subject" class="text-2xl font-bold text-gray-900">
+                How are you doing bro?
+              </h2>
+              <button class="text-gray-400 hover:text-gray-600 md:hidden">
+                <i class="fas fa-times text-xl"></i>
+              </button>
+            </div>
+
+            <!-- Sender Info -->
+            <div class="flex items-start justify-between">
+              <div class="flex items-center space-x-3">
+                <div
+                  id="email-avatar"
+                  class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold"
+                >
+                  M
+                </div>
+                <div>
+                  <h3 id="email-sender" class="font-semibold text-gray-900">
+                    Meiliang Chang
+                  </h3>
+                  <p class="text-sm text-gray-500">
+                    to me • starling@mail.com, bbc • korg@gmail.com
+                  </p>
+                </div>
+              </div>
+              <span id="email-time" class="text-sm text-gray-500"
+                >Wed, Nov 11 2025, 11:57 AM</span
+              >
+            </div>
+
+            <!-- Category Badge -->
+            <div class="mt-4">
+              <span
+                id="email-label"
+                class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full"
+                >Business</span
+              >
+            </div>
+          </div>
+
+          <!-- Email Content (Gmail Style) -->
+          <div class="flex-1 overflow-y-auto p-6">
+            <div class="max-w-4xl mx-auto bg-white">
+              <!-- Gmail-style Banner (Optional) -->
+              <div class="mb-6 p-4 bg-gray-900 text-white rounded-lg">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs text-gray-400"
+                    >Email not displaying correctly?</span
+                  >
+                  <a href="#" class="text-xs text-blue-400 hover:underline"
+                    >View it online</a
+                  >
+                </div>
+              </div>
+
+              <!-- Main Email Body -->
+              <div id="email-content" class="space-y-4 text-gray-900">
+                <div class="bg-gray-900 text-white p-8 rounded-lg text-center">
+                  <p class="text-sm text-gray-400 mb-6">Google AI Studio</p>
+                  <h1 class="text-4xl font-bold mb-8">
+                    Bring any idea to life with<br />Gemini 3
+                  </h1>
+                  <button
+                    class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-medium transition"
+                  >
+                    Try it free of charge
+                  </button>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg">
+                  <p class="text-gray-900 mb-4">Hi Khan,</p>
+
+                  <p class="text-gray-900 mb-4">
+                    You can now build and test with Gemini 3 in Google AI
+                    Studio, or access the model via the Gemini API with a paid
+                    key.
+                  </p>
+
+                  <ul class="space-y-3 text-gray-900 list-none">
+                    <li class="flex items-start">
+                      <span class="mr-2">•</span>
+                      <span
+                        ><strong>Vibe code:</strong> Build web apps with
+                        exceptional zero-shot generation and richer UI</span
+                      >
+                    </li>
+                    <li class="flex items-start">
+                      <span class="mr-2">•</span>
+                      <span
+                        ><strong>Reason across modalities:</strong> Handle
+                        complex multimodal inputs with state-of-the-art
+                        reasoning</span
+                      >
+                    </li>
+                    <li class="flex items-start">
+                      <span class="mr-2">•</span>
+                      <span
+                        ><strong>Build agents:</strong> Utilize improved agentic
+                        coding, tool use, and native code execution</span
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                  <p class="text-sm text-gray-600">
+                    This is a promotional email from Google AI. If you'd like to
+                    unsubscribe,
+                    <a href="#" class="text-blue-600 hover:underline"
+                      >click here</a
+                    >.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div
+            class="sticky bottom-0 p-6 border-t border-gray-200 bg-gray-50 shadow-lg"
+          >
+            <div class="flex items-center space-x-3">
+              <button
+                class="px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition flex items-center space-x-2"
+              >
+                <i class="fas fa-reply"></i>
+                <span>Reply</span>
+              </button>
+              <button
+                class="px-6 py-2.5 bg-white hover:bg-gray-100 text-gray-700 border border-gray-300 rounded-lg font-medium transition flex items-center space-x-2"
+              >
+                <i class="fas fa-share"></i>
+                <span>Forward</span>
+              </button>
+              <button
+                class="px-4 py-2.5 bg-white hover:bg-gray-100 text-gray-700 border border-gray-300 rounded-lg transition"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div
+      id="mobile-sidebar"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden"
+    >
+      <div class="bg-white w-64 h-full shadow-xl p-6">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-xl font-bold text-gray-900">Menu</h2>
+          <button id="close-sidebar" class="text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <nav class="space-y-4">
+          <a
+            href="#"
+            class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition"
+          >
+            <i class="fas fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+          <a
+            href="#"
+            class="flex items-center space-x-3 text-blue-500 bg-blue-50 px-4 py-3 rounded-lg"
+          >
+            <i class="fas fa-inbox"></i>
+            <span>Inbox</span>
+          </a>
+          <a
+            href="#"
+            class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition"
+          >
+            <i class="fas fa-file-alt"></i>
+            <span>Classify Mail</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Mobile Email Detail Overlay -->
+    <div
+      id="mobile-email-detail"
+      class="hidden fixed inset-0 bg-white z-40 md:hidden overflow-y-auto"
+    >
+      <!-- Same content as desktop email detail -->
+    </div>
+
+    <script>
+      // Sample email data
+      const emails = [
+        {
+          id: 1,
+          sender: "Meiliang Chang",
+          subject: "How are you doing bro?",
+          preview:
+            "Bro, I just realized life is 90% vibes and 10% trying not to fall of...",
+          time: "12:00 AM",
+          label: "Business",
+          labelColor: "blue",
+          content: `
+            <div class="bg-gray-900 text-white p-8 rounded-lg text-center">
+              <p class="text-sm text-gray-400 mb-6">Google AI Studio</p>
+              <h1 class="text-4xl font-bold mb-8">
+                Bring any idea to life with<br />Gemini 3
+              </h1>
+              <button
+                class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-medium transition"
+              >
+                Try it free of charge
+              </button>
+            </div>
+            <div class="bg-white p-6 rounded-lg mt-4">
+              <p class="text-gray-900 mb-4">Hi Khan,</p>
+              <p class="text-gray-900 mb-4">
+                You can now build and test with Gemini 3 in Google AI
+                Studio, or access the model via the Gemini API with a paid
+                key.
+              </p>
+            </div>
+          `,
+        },
+        {
+          id: 2,
+          sender: "Sarah Johnson",
+          subject: "Project Update",
+          preview:
+            "Here's the latest update on the project we discussed last week...",
+          time: "11:30 AM",
+          label: "Work",
+          labelColor: "green",
+          content: `
+            <div class="bg-white p-6 rounded-lg">
+              <p class="text-gray-900 mb-4">Hi Team,</p>
+              <p class="text-gray-900 mb-4">
+                I wanted to share the latest updates on our project progress. We've made significant headway this week.
+              </p>
+              <ul class="space-y-2 text-gray-900 list-disc ml-6">
+                <li>Completed the backend API development</li>
+                <li>Frontend design is 80% complete</li>
+                <li>Testing phase will begin next Monday</li>
+              </ul>
+              <p class="text-gray-900 mt-4">Best regards,<br/>Sarah</p>
+            </div>
+          `,
+        },
+        {
+          id: 3,
+          sender: "Tech Newsletter",
+          subject: "Weekly Tech Digest",
+          preview:
+            "Top 10 trending technologies this week that you should know about...",
+          time: "Yesterday",
+          label: "Newsletter",
+          labelColor: "purple",
+          content: `
+            <div class="bg-white p-6 rounded-lg">
+              <h2 class="text-2xl font-bold mb-4">This Week's Top Tech Trends</h2>
+              <ol class="space-y-3 text-gray-900 list-decimal ml-6">
+                <li>AI advancements in healthcare</li>
+                <li>Quantum computing breakthroughs</li>
+                <li>5G network expansion</li>
+                <li>Sustainable tech innovations</li>
+                <li>Cybersecurity updates</li>
+              </ol>
+            </div>
+          `,
+        },
+        {
+          id: 4,
+          sender: "John Smith",
+          subject: "Meeting Reminder",
+          preview: "Don't forget about our meeting tomorrow at 2 PM...",
+          time: "2 days ago",
+          label: "Personal",
+          labelColor: "orange",
+          content: `
+            <div class="bg-white p-6 rounded-lg">
+              <p class="text-gray-900 mb-4">Hey,</p>
+              <p class="text-gray-900 mb-4">
+                Just a friendly reminder about our meeting scheduled for tomorrow at 2 PM. 
+                Please make sure to review the documents I sent earlier.
+              </p>
+              <p class="text-gray-900">See you then!<br/>John</p>
+            </div>
+          `,
+        },
+        {
+          id: 5,
+          sender: "Marketing Team",
+          subject: "Q4 Campaign Results",
+          preview:
+            "Great news! Our Q4 campaign exceeded expectations by 25%...",
+          time: "3 days ago",
+          label: "Business",
+          labelColor: "blue",
+          content: `
+            <div class="bg-white p-6 rounded-lg">
+              <p class="text-gray-900 mb-4">Dear Team,</p>
+              <p class="text-gray-900 mb-4">
+                I'm thrilled to announce that our Q4 campaign has exceeded all expectations! 
+                We've achieved a 25% increase over our initial projections.
+              </p>
+              <p class="text-gray-900 mb-4">Key highlights:</p>
+              <ul class="space-y-2 text-gray-900 list-disc ml-6 mb-4">
+                <li>ROI increased by 30%</li>
+                <li>Customer engagement up 45%</li>
+                <li>Conversion rate improved by 20%</li>
+              </ul>
+              <p class="text-gray-900">Congratulations to everyone involved!</p>
+            </div>
+          `,
+        },
+        {
+          id: 6,
+          sender: "Customer Support",
+          subject: "Ticket #12345 Resolved",
+          preview:
+            "Your support ticket has been resolved. Let us know if you need...",
+          time: "4 days ago",
+          label: "Support",
+          labelColor: "red",
+          content: `
+            <div class="bg-white p-6 rounded-lg">
+              <p class="text-gray-900 mb-4">Hello,</p>
+              <p class="text-gray-900 mb-4">
+                We're happy to inform you that your support ticket #12345 has been resolved. 
+                Our team has addressed the issue you reported.
+              </p>
+              <p class="text-gray-900 mb-4">
+                If you have any further questions or concerns, please don't hesitate to reach out.
+              </p>
+              <p class="text-gray-900">Best regards,<br/>Support Team</p>
+            </div>
+          `,
+        },
+        {
+          id: 7,
+          sender: "Finance Department",
+          subject: "Invoice #INV-2024-001",
+          preview:
+            "Please find attached the invoice for services rendered in January...",
+          time: "5 days ago",
+          label: "Finance",
+          labelColor: "yellow",
+          content: `
+            <div class="bg-white p-6 rounded-lg">
+              <p class="text-gray-900 mb-4">Dear Valued Customer,</p>
+              <p class="text-gray-900 mb-4">
+                Please find attached Invoice #INV-2024-001 for services rendered in January 2024.
+              </p>
+              <p class="text-gray-900 mb-4">
+                Payment is due within 30 days. If you have any questions regarding this invoice, 
+                please contact our finance department.
+              </p>
+              <p class="text-gray-900">Thank you for your business!</p>
+            </div>
+          `,
+        },
+      ];
+
+      // Function to get label color classes
+      function getLabelColorClasses(color) {
+        const colors = {
+          blue: "bg-blue-100 text-blue-700",
+          green: "bg-green-100 text-green-700",
+          purple: "bg-purple-100 text-purple-700",
+          orange: "bg-orange-100 text-orange-700",
+          red: "bg-red-100 text-red-700",
+          yellow: "bg-yellow-100 text-yellow-700",
+        };
+        return colors[color] || colors.blue;
+      }
+
+      // Function to update email detail view
+      function updateEmailDetail(email) {
+        // Update subject
+        document.getElementById("email-subject").textContent = email.subject;
+
+        // Update sender
+        document.getElementById("email-sender").textContent = email.sender;
+
+        // Update avatar (first letter of sender's name)
+        const avatarLetter = email.sender.charAt(0).toUpperCase();
+        document.getElementById("email-avatar").textContent = avatarLetter;
+
+        // Update time
+        document.getElementById("email-time").textContent = email.time;
+
+        // Update label
+        const labelElement = document.getElementById("email-label");
+        labelElement.textContent = email.label;
+        labelElement.className = `inline-block px-3 py-1 ${getLabelColorClasses(email.labelColor)} text-sm rounded-full`;
+
+        // Update content
+        document.getElementById("email-content").innerHTML = email.content;
+
+        // Show email detail panel on desktop
+        document.getElementById("email-detail").classList.remove("hidden");
+        document.getElementById("email-detail").classList.add("md:flex");
+      }
+
+      // Function to render email list
+      function renderEmailList() {
+        const emailListContainer = document.getElementById("email-list");
+
+        emailListContainer.innerHTML = emails
+          .map(
+            (email, index) => `
+          <div
+            class="email-item border-l-4 ${index === 0 ? "border-blue-500 bg-blue-50" : "border-transparent"} p-4 cursor-pointer hover:bg-${index === 0 ? "blue" : "gray"}-${index === 0 ? "100" : "50"} transition"
+            data-email-id="${email.id}"
+          >
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="font-semibold text-gray-900 text-base md:text-lg">
+                ${email.sender}
+              </h3>
+              <span class="text-sm text-gray-500">${email.time}</span>
+            </div>
+            <p class="text-sm md:text-base text-gray-600 mb-2 line-clamp-2">
+              ${email.preview}
+            </p>
+            <span class="inline-block px-3 py-1 ${getLabelColorClasses(email.labelColor)} text-sm font-medium rounded-full">
+              ${email.label}
+            </span>
+          </div>
+        `
+          )
+          .join("");
+
+        // Add click event listeners
+        attachEmailClickListeners();
+
+        // Load first email by default
+        if (emails.length > 0) {
+          updateEmailDetail(emails[0]);
+        }
+      }
+
+      // Function to attach click listeners to email items
+      function attachEmailClickListeners() {
+        const emailItems = document.querySelectorAll(".email-item");
+        const mobileEmailDetail = document.getElementById(
+          "mobile-email-detail"
+        );
+
+        emailItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            const emailId = parseInt(this.getAttribute("data-email-id"));
+            const selectedEmail = emails.find((email) => email.id === emailId);
+
+            // Remove active state from all items
+            emailItems.forEach((i) => {
+              i.classList.remove("border-blue-500", "bg-blue-50");
+              i.classList.add("border-transparent");
+            });
+
+            // Add active state to clicked item
+            this.classList.remove("border-transparent");
+            this.classList.add("border-blue-500", "bg-blue-50");
+
+            // Update email detail
+            if (selectedEmail) {
+              updateEmailDetail(selectedEmail);
+            }
+
+            // Show email detail on mobile
+            if (window.innerWidth < 768) {
+              mobileEmailDetail?.classList.remove("hidden");
+            }
+          });
+        });
+      }
+
+      // Mobile sidebar toggle
+      const mobileSidebarBtn = document.getElementById("mobile-sidebar-btn");
+      const mobileSidebar = document.getElementById("mobile-sidebar");
+      const closeSidebar = document.getElementById("close-sidebar");
+
+      if (mobileSidebarBtn) {
+        mobileSidebarBtn.addEventListener("click", () => {
+          mobileSidebar.classList.remove("hidden");
+        });
+      }
+
+      if (closeSidebar) {
+        closeSidebar.addEventListener("click", () => {
+          mobileSidebar.classList.add("hidden");
+        });
+      }
+
+      mobileSidebar?.addEventListener("click", (e) => {
+        if (e.target === mobileSidebar) {
+          mobileSidebar.classList.add("hidden");
+        }
+      });
+
+      // Initialize email list on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        renderEmailList();
+      });
+    </script>
+  </body>
+</html>
