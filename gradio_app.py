@@ -1,33 +1,27 @@
-"""
-Gradio interface for email intent classification.
-
-Usage:
-    python web/gradio_app.py
-
-Or:
-    cd web && python gradio_app.py
-"""
-
+# Import libraries
 import os
 import json
 import torch
 import numpy as np
 import gradio as gr
+from pathlib import Path
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from peft import PeftModel
 
-# ---------- Configuration ----------
-# Option 1: Load from Hugging Face Hub (recommended)
+# Setup Configuration
+# Load model from Hugging Face If available (but might be slow)
 HF_MODEL_ID = "Youhorng/distilbert-lora-multilabel-email-intent-classification"
 USE_HF_HUB = True  # Set to False to use local model
 
-# Option 2: Load from local directory
-FINAL_DIR = "/Users/youhorng/Desktop/projects/multi-label-email-intent-classification/model/final_model"
-META_PATH = "/Users/youhorng/Desktop/projects/multi-label-email-intent-classification/notebooks/preprocess_meta.json"
+# Load model from local dir
+PROJECT_ROOT = Path(__file__).parent
+FINAL_DIR = PROJECT_ROOT / "model" / "final_model"
+META_PATH = PROJECT_ROOT / "notebooks" / "preprocess_meta.json"
 
-# ---------- Load metadata ----------
-with open(META_PATH, "r") as f:
+# Load metadata during training
+with open(str(META_PATH), "r") as f:
     meta = json.load(f)
+
 
 BASE_MODEL_NAME = meta["model_name"]  # "distilbert-base-uncased"
 MAX_LENGTH = meta.get("max_length", 256)
@@ -36,7 +30,7 @@ id2label = {int(k): v for k, v in meta["id2label"].items()}
 num_labels = len(label2id)
 all_labels = [id2label[i] for i in sorted(id2label.keys())]
 
-# ---------- Device ----------
+# Setup the device 
 device = torch.device(
     "cuda" if torch.cuda.is_available()
     else "mps" if torch.backends.mps.is_available()
@@ -45,7 +39,7 @@ device = torch.device(
 
 print(f"Using device: {device}")
 
-# ---------- Load model ----------
+# Load the model
 print("Loading model...")
 if USE_HF_HUB:
     print(f"Loading from Hugging Face Hub: {HF_MODEL_ID}")
@@ -62,7 +56,7 @@ if USE_HF_HUB:
     model = PeftModel.from_pretrained(base_model, HF_MODEL_ID)
 else:
     print(f"Loading from local directory: {FINAL_DIR}")
-    tokenizer = AutoTokenizer.from_pretrained(FINAL_DIR)
+    tokenizer = AutoTokenizer.from_pretrained(str(FINAL_DIR))
     
     base_model = AutoModelForSequenceClassification.from_pretrained(
         BASE_MODEL_NAME,
@@ -72,26 +66,16 @@ else:
         label2id=label2id,
     )
     
-    model = PeftModel.from_pretrained(base_model, FINAL_DIR)
+    model = PeftModel.from_pretrained(base_model, str(FINAL_DIR))
 
 model.to(device)
 model.eval()
 print("✅ Model loaded successfully!")
 
 
-# ---------- Prediction function ----------
+# Create a prediction function
 def predict_email_intent(subject: str, body: str, threshold: float = 0.55):
-    """
-    Predict email intents from subject and body.
-    
-    Args:
-        subject: Email subject line
-        body: Email body text
-        threshold: Probability threshold for label prediction (default: 0.55)
-    
-    Returns:
-        Tuple of (predicted_intents_string, probabilities_dict)
-    """
+
     if not subject and not body:
         return "Please enter email subject and/or body.", {}
     
@@ -132,9 +116,9 @@ def predict_email_intent(subject: str, body: str, threshold: float = 0.55):
     return predicted_text, sorted_probs
 
 
-# ---------- Create Gradio interface ----------
+# Create gradio interface for the app
 def create_interface():
-    with gr.Blocks(title="Email Intent Classification") as demo:
+    with gr.Blocks(title="Multi-Label Email Intent Classification") as demo:
         gr.Markdown("""
         # 📧 Email Intent Classification
         
@@ -149,12 +133,12 @@ def create_interface():
             with gr.Column():
                 subject_input = gr.Textbox(
                     label="Email Subject",
-                    placeholder="e.g., Meeting Reminder: Quarterly Sales Review",
+                    placeholder="Meeting Reminder: Quarterly Sales Review",
                     lines=2
                 )
                 body_input = gr.Textbox(
                     label="Email Body",
-                    placeholder="e.g., Dear Team, Just a friendly reminder that our Quarterly Sales Review meeting is scheduled for tomorrow...",
+                    placeholder="Dear Team, Just a friendly reminder that our Quarterly Sales Review meeting is scheduled for tomorrow...",
                     lines=10
                 )
                 threshold_slider = gr.Slider(
