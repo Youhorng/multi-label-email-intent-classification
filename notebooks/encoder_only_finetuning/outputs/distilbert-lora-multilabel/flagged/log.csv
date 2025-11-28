@@ -1,0 +1,5 @@
+Email Header / Subject,Email Content,Label Probabilities,Predicted Labels (threshold=0.5),flag,username,timestamp
+,,,,,,2025-11-25 00:32:17.344769
+Meeting Reminder: Team Lunch Tomorrow,"Dear Team, Just a quick reminder that we have our team lunch scheduled for tomorrow at 12:00 PM in the office cafeteria. This lunch is a great opportunity for us to catch up and discuss any updates or upcoming projects. Please make sure to attend and let me know if you have any dietary restrictions. Looking forward to seeing everyone there!",,,,,2025-11-25 00:32:25.578640
+Meeting Reminder: Team Lunch Tomorrow,"Dear Team, Just a quick reminder that we have our team lunch scheduled for tomorrow at 12:00 PM in the office cafeteria. This lunch is a great opportunity for us to catch up and discuss any updates or upcoming projects. Please make sure to attend and let me know if you have any dietary restrictions. Looking forward to seeing everyone there!","Business: 0.539
+Customer Support: 0.5483","Business, Customer Support",,,2025-11-25 00:32:32.212915
