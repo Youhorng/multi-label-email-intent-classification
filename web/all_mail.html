@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <script src="script/all_mail.js"></script>
   </head>
   <body class="bg-gray-50 m-0 p-0">
     <div class="flex min-h-screen">
@@ -82,25 +83,138 @@
 
             <!-- Filters -->
             <div class="flex items-center space-x-4 mt-4">
-              <button
-                class="flex items-center space-x-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
-              >
-                <i class="fas fa-tags text-gray-600"></i>
-                <span class="text-gray-700">All labels</span>
-              </button>
-              <button
-                class="flex items-center space-x-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
-              >
-                <i class="fas fa-sort text-gray-600"></i>
-                <span class="text-gray-700">Newest</span>
-              </button>
+              <div class="relative">
+                <button
+                  id="label-filter-btn"
+                  class="flex items-center space-x-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
+                >
+                  <i class="fas fa-tags text-gray-600"></i>
+                  <span class="text-gray-700">All labels</span>
+                  <i class="fas fa-chevron-down text-gray-600 text-xs"></i>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div
+                  id="label-dropdown"
+                  class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 z-10"
+                >
+                  <div class="py-2">
+                    <button
+                      data-label="all"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span>All labels</span>
+                    </button>
+                    <button
+                      data-label="Business"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                      <span>Business</span>
+                    </button>
+                    <button
+                      data-label="Personal"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                      <span>Personal</span>
+                    </button>
+                    <button
+                      data-label="Promotions"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-pink-500"></span>
+                      <span>Promotions</span>
+                    </button>
+                    <button
+                      data-label="Customer Support"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                      <span>Customer Support</span>
+                    </button>
+                    <button
+                      data-label="Job Application"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                      <span>Job Application</span>
+                    </button>
+                    <button
+                      data-label="Finance & Bills"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                      <span>Finance & Bills</span>
+                    </button>
+                    <button
+                      data-label="Events & Invitations"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                      <span>Events & Invitations</span>
+                    </button>
+                    <button
+                      data-label="Travel & Bookings"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+                      <span>Travel & Bookings</span>
+                    </button>
+                    <button
+                      data-label="Reminders"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                      <span>Reminders</span>
+                    </button>
+                    <button
+                      data-label="Newsletters"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                      <span>Newsletters</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <button
+                  id="sort-filter-btn"
+                  class="flex items-center space-x-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
+                >
+                  <i class="fas fa-sort text-gray-600"></i>
+                  <span class="text-gray-700">Newest</span>
+                  <i class="fas fa-chevron-down text-gray-600 text-xs"></i>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div
+                  id="sort-dropdown"
+                  class="hidden absolute top-full left-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 z-10"
+                >
+                  <div class="py-2">
+                    <button
+                      data-sort="newest"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Newest first
+                    </button>
+                    <button
+                      data-sort="oldest"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Oldest first
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Email List -->
-          <div id="email-list" class="flex-1 overflow-y-auto">
-            <!-- Email items will be render here -->
-          </div>
+          <div id="email-list" class="flex-1 overflow-y-auto"></div>
         </div>
 
         <!-- Email Detail Panel (Hidden on Mobile) -->
@@ -111,9 +225,10 @@
           <!-- Email Header -->
           <div class="p-6 border-b border-gray-200">
             <div class="flex items-start justify-between mb-4">
-              <h2 id="email-subject" class="text-2xl font-bold text-gray-900">
-                How are you doing bro?
-              </h2>
+              <h2
+                id="email-subject"
+                class="text-2xl font-bold text-gray-900"
+              ></h2>
               <button class="text-gray-400 hover:text-gray-600 md:hidden">
                 <i class="fas fa-times text-xl"></i>
               </button>
@@ -125,36 +240,28 @@
                 <div
                   id="email-avatar"
                   class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold"
-                >
-                  M
-                </div>
+                ></div>
                 <div>
-                  <h3 id="email-sender" class="font-semibold text-gray-900">
-                    Meiliang Chang
-                  </h3>
+                  <h3
+                    id="email-sender"
+                    class="font-semibold text-gray-900"
+                  ></h3>
                   <p class="text-sm text-gray-500">
-                    <span id="email-sender-email">to me</span>
+                    <span id="email-sender-email"></span>
                   </p>
                 </div>
               </div>
-              <span id="email-time" class="text-sm text-gray-500"
-                >Wed, Nov 11 2025, 11:57 AM</span
-              >
+              <span id="email-time" class="text-sm text-gray-500"></span>
             </div>
 
             <!-- Category Badges -->
-            <div id="email-categories" class="mt-4 flex flex-wrap gap-2">
-              <!-- Categories will be rendered here -->
-            </div>
+            <div id="email-categories" class="mt-4 flex flex-wrap gap-2"></div>
           </div>
 
-          <!-- Email Content (Gmail Style) -->
+          <!-- Email Content -->
           <div class="flex-1 overflow-y-auto p-6">
             <div class="max-w-4xl mx-auto bg-white">
-              <!-- Main Email Body -->
-              <div id="email-content" class="space-y-4 text-gray-900">
-                <!-- Content will be rendered here -->
-              </div>
+              <div id="email-content" class="space-y-4 text-gray-900"></div>
             </div>
           </div>
 
@@ -229,219 +336,6 @@
     <div
       id="mobile-email-detail"
       class="hidden fixed inset-0 bg-white z-40 md:hidden overflow-y-auto"
-    >
-      <!-- Same content as desktop email detail -->
-    </div>
-
-    <script>
-      // Function to load emails from localStorage
-      function loadEmailsFromStorage() {
-        const storedEmails = localStorage.getItem("gmail_emails");
-
-        if (storedEmails) {
-          try {
-            return JSON.parse(storedEmails);
-          } catch (e) {
-            console.error("Error parsing stored emails:", e);
-            return [];
-          }
-        }
-
-        // Return empty array if no emails stored
-        return [];
-      }
-
-      // Load emails from localStorage
-      const emails = loadEmailsFromStorage();
-
-      // Function to get category color classes
-      function getCategoryColorClasses(category) {
-        const colorMap = {
-          Business: "bg-blue-100 text-blue-700",
-          Personal: "bg-purple-100 text-purple-700",
-          Promotions: "bg-pink-100 text-pink-700",
-          "Customer Support": "bg-red-100 text-red-700",
-          "Job Application": "bg-indigo-100 text-indigo-700",
-          "Finance & Bills": "bg-yellow-100 text-yellow-700",
-          "Events & Invitations": "bg-green-100 text-green-700",
-          "Travel & Bookings": "bg-teal-100 text-teal-700",
-          Reminders: "bg-orange-100 text-orange-700",
-          Newsletters: "bg-cyan-100 text-cyan-700",
-        };
-        return colorMap[category] || "bg-gray-100 text-gray-700";
-      }
-
-      // Function to update email detail view
-      function updateEmailDetail(email) {
-        // Update subject
-        document.getElementById("email-subject").textContent = email.subject;
-
-        // Update sender
-        document.getElementById("email-sender").textContent = email.sender;
-
-        // Update sender email
-        const senderEmailEl = document.getElementById("email-sender-email");
-        senderEmailEl.textContent = `to ${email.to || "me"}`;
-
-        // Update avatar (first letter of sender's name)
-        const avatarLetter = email.sender.charAt(0).toUpperCase();
-        document.getElementById("email-avatar").textContent = avatarLetter;
-
-        // Update time
-        document.getElementById("email-time").textContent = email.time;
-
-        // Update categories
-        const categoriesContainer = document.getElementById("email-categories");
-        if (email.categories && email.categories.length > 0) {
-          categoriesContainer.innerHTML = email.categories
-            .map(
-              (category) =>
-                `<span class="inline-block px-3 py-1 ${getCategoryColorClasses(category)} text-sm font-medium rounded-full">
-                  ${category}
-                </span>`
-            )
-            .join("");
-          categoriesContainer.style.display = "flex";
-        } else {
-          categoriesContainer.style.display = "none";
-        }
-
-        // Update content
-        document.getElementById("email-content").innerHTML = email.content;
-
-        // Show email detail panel on desktop
-        document.getElementById("email-detail").classList.remove("hidden");
-        document.getElementById("email-detail").classList.add("md:flex");
-      }
-
-      // Function to render email list
-      function renderEmailList() {
-        const emailListContainer = document.getElementById("email-list");
-
-        // Check if emails array is empty
-        if (emails.length === 0) {
-          emailListContainer.innerHTML = `
-                <div class="p-8 text-center">
-                  <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
-                  <p class="text-gray-500 text-lg font-medium mb-2">No emails found</p>
-                  <p class="text-gray-400 text-sm mb-4">Please sync your Gmail account first</p>
-                  <a href="gmail.html" class="inline-block px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition">
-                    Sync Gmail
-                  </a>
-                </div>
-              `;
-          return;
-        }
-
-        emailListContainer.innerHTML = emails
-          .map(
-            (email, index) => `
-              <div
-                class="email-item border-l-4 ${index === 0 ? "border-blue-500 bg-blue-50" : "border-transparent"} p-4 cursor-pointer hover:bg-${index === 0 ? "blue" : "gray"}-${index === 0 ? "100" : "50"} transition"
-                data-email-id="${email.id}"
-              >
-                <div class="flex items-start justify-between mb-2">
-                  <h3 class="font-semibold text-gray-900 text-base md:text-lg">
-                    ${email.sender}
-                  </h3>
-                  <span class="text-sm text-gray-500">${email.time}</span>
-                </div>
-                <p class="text-sm md:text-base font-medium text-gray-800 mb-1">
-                  ${email.subject}
-                </p>
-                <p class="text-sm text-gray-600 mb-2 line-clamp-2">
-                  ${email.preview}
-                </p>
-                ${
-                  email.categories && email.categories.length > 0
-                    ? `<div class="flex flex-wrap gap-1 mt-2">
-                        ${email.categories
-                          .map(
-                            (category) =>
-                              `<span class="inline-block px-2 py-0.5 ${getCategoryColorClasses(category)} text-xs font-medium rounded-full">
-                                ${category}
-                              </span>`
-                          )
-                          .join("")}
-                      </div>`
-                    : ""
-                }
-              </div>
-            `
-          )
-          .join("");
-
-        // Add click event listeners
-        attachEmailClickListeners();
-
-        // Load first email by default
-        if (emails.length > 0) {
-          updateEmailDetail(emails[0]);
-        }
-      }
-
-      // Function to attach click listeners to email items
-      function attachEmailClickListeners() {
-        const emailItems = document.querySelectorAll(".email-item");
-        const mobileEmailDetail = document.getElementById(
-          "mobile-email-detail"
-        );
-
-        emailItems.forEach((item) => {
-          item.addEventListener("click", function () {
-            const emailId = this.getAttribute("data-email-id");
-            const selectedEmail = emails.find((email) => email.id === emailId);
-
-            // Remove active state from all items
-            emailItems.forEach((i) => {
-              i.classList.remove("border-blue-500", "bg-blue-50");
-              i.classList.add("border-transparent");
-            });
-
-            // Add active state to clicked item
-            this.classList.remove("border-transparent");
-            this.classList.add("border-blue-500", "bg-blue-50");
-
-            // Update email detail
-            if (selectedEmail) {
-              updateEmailDetail(selectedEmail);
-            }
-
-            // Show email detail on mobile
-            if (window.innerWidth < 768) {
-              mobileEmailDetail?.classList.remove("hidden");
-            }
-          });
-        });
-      }
-
-      // Mobile sidebar toggle
-      const mobileSidebarBtn = document.getElementById("mobile-sidebar-btn");
-      const mobileSidebar = document.getElementById("mobile-sidebar");
-      const closeSidebar = document.getElementById("close-sidebar");
-
-      if (mobileSidebarBtn) {
-        mobileSidebarBtn.addEventListener("click", () => {
-          mobileSidebar.classList.remove("hidden");
-        });
-      }
-
-      if (closeSidebar) {
-        closeSidebar.addEventListener("click", () => {
-          mobileSidebar.classList.add("hidden");
-        });
-      }
-
-      mobileSidebar?.addEventListener("click", (e) => {
-        if (e.target === mobileSidebar) {
-          mobileSidebar.classList.add("hidden");
-        }
-      });
-
-      // Initialize email list on page load
-      document.addEventListener("DOMContentLoaded", () => {
-        renderEmailList();
-      });
-    </script>
+    ></div>
   </body>
 </html>

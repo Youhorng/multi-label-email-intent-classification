@@ -9,14 +9,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <script src="script/classify_mail.js"></script>
   </head>
   <body class="bg-gray-50 m-0 p-0">
     <div class="flex min-h-screen">
-      <!-- Sidebar -->
       <aside
         class="hidden md:flex md:w-20 bg-white shadow-lg flex-col items-center py-6 space-y-8 fixed left-0 top-0 h-screen z-30"
       >
-        <!-- Logo/Home Icon -->
         <a
           href="#"
           class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-white hover:bg-blue-600 transition"
@@ -24,7 +23,7 @@
           <i class="fas fa-envelope text-xl"></i>
         </a>
 
-        <!-- Navigation Icons -->
+        <!-- SideBar -->
         <a
           href="dashboard.html"
           class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition"
@@ -34,20 +33,20 @@
 
         <a
           href="all_mail.html"
-          class="w-12 h-12 flex items-center justify-center text-blue-500 bg-blue-50 rounded-xl transition"
+          class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition"
         >
           <i class="fas fa-inbox text-xl"></i>
         </a>
 
         <a
           href="classify_mail.html"
-          class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition"
+          class="w-12 h-12 flex items-center justify-center text-blue-500 bg-blue-50 rounded-xl transition"
         >
           <i class="fas fa-file-alt text-xl"></i>
         </a>
       </aside>
 
-      <!-- Main Content -->
+      <!-- Main Content Area -->
       <main class="flex-1 w-full md:ml-20">
         <!-- Mobile Header -->
         <div
@@ -60,14 +59,12 @@
           <div class="w-6"></div>
         </div>
 
-        <!-- Page Header -->
         <div class="px-4 md:px-8 lg:px-12 py-6 md:py-8">
           <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             Classify Mail
           </h1>
         </div>
 
-        <!-- Info Banner -->
         <div class="px-4 md:px-8 lg:px-12 mb-6">
           <div
             class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 md:p-8 shadow-lg"
@@ -92,17 +89,16 @@
           </div>
         </div>
 
-        <!-- Content Grid -->
         <div class="px-4 md:px-8 lg:px-12 pb-8">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            <!-- Left Column - Email Form -->
+            <!-- Email Input Form -->
             <div class="bg-white rounded-2xl shadow-md p-6 md:p-8">
               <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
                 Email detail
               </h3>
 
               <form id="classify-form" class="space-y-5">
-                <!-- Email Title -->
+                <!-- Email Title Input -->
                 <div>
                   <label class="block text-sm font-semibold text-gray-700 mb-2">
                     Email title <span class="text-red-500">*</span>
@@ -116,7 +112,7 @@
                   />
                 </div>
 
-                <!-- Sender -->
+                <!-- Sender Input -->
                 <div>
                   <label class="block text-sm font-semibold text-gray-700 mb-2">
                     Sender <span class="text-red-500">*</span>
@@ -130,7 +126,6 @@
                   />
                 </div>
 
-                <!-- Receive Time -->
                 <div>
                   <label class="block text-sm font-semibold text-gray-700 mb-2">
                     Receive time <span class="text-red-500">*</span>
@@ -143,7 +138,7 @@
                   />
                 </div>
 
-                <!-- Email Content -->
+                <!-- Email Content Textarea -->
                 <div>
                   <label class="block text-sm font-semibold text-gray-700 mb-2">
                     Email content <span class="text-red-500">*</span>
@@ -170,13 +165,12 @@
               </form>
             </div>
 
-            <!-- Right Column - Classification Result -->
             <div class="bg-white rounded-2xl shadow-md p-6 md:p-8">
               <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-6">
                 Classification Result
               </h3>
 
-              <!-- Empty State -->
+              <!-- Empty State - When first clicked on page -->
               <div
                 id="empty-state"
                 class="flex flex-col items-center justify-center py-12 md:py-16"
@@ -192,15 +186,15 @@
                 </p>
               </div>
 
-              <!-- Result State (hidden by default) -->
+              <!-- Results Display -->
               <div id="result-state" class="hidden space-y-4">
-                <!-- Classification Labels -->
+                <!-- Predicted Categories -->
                 <div class="space-y-3">
                   <h4 class="text-sm font-semibold text-gray-700 mb-3">
                     Predicted Categories:
                   </h4>
                   <div id="result-labels" class="flex flex-wrap gap-2">
-                    <!-- Labels will be added here dynamically -->
+                    <!-- Category badges inserted here via JS -->
                   </div>
                 </div>
 
@@ -210,11 +204,11 @@
                     Confidence Scores:
                   </h4>
                   <div id="result-scores" class="space-y-2">
-                    <!-- Scores will be added here dynamically -->
+                    <!-- Score bars inserted here via JS -->
                   </div>
                 </div>
 
-                <!-- Email Details -->
+                <!-- Email Summary Info -->
                 <div class="pt-4 border-t border-gray-200">
                   <h4 class="text-sm font-semibold text-gray-700 mb-3">
                     Email Information:
@@ -288,151 +282,5 @@
         </nav>
       </div>
     </div>
-
-    <script>
-      // Mobile sidebar toggle
-      const mobileSidebarBtn = document.getElementById("mobile-sidebar-btn");
-      const mobileSidebar = document.getElementById("mobile-sidebar");
-      const closeSidebar = document.getElementById("close-sidebar");
-
-      if (mobileSidebarBtn) {
-        mobileSidebarBtn.addEventListener("click", () => {
-          mobileSidebar.classList.remove("hidden");
-        });
-      }
-
-      if (closeSidebar) {
-        closeSidebar.addEventListener("click", () => {
-          mobileSidebar.classList.add("hidden");
-        });
-      }
-
-      mobileSidebar.addEventListener("click", (e) => {
-        if (e.target === mobileSidebar) {
-          mobileSidebar.classList.add("hidden");
-        }
-      });
-
-      // Form submission
-      const form = document.getElementById("classify-form");
-      const emptyState = document.getElementById("empty-state");
-      const resultState = document.getElementById("result-state");
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const emailTitle = document.getElementById("email-title").value;
-        const sender = document.getElementById("sender").value;
-        const receiveTime = document.getElementById("receive-time").value;
-        const emailContent = document.getElementById("email-content").value;
-
-        // Combine title and content for classification
-        const fullText = `${emailTitle}\n\n${emailContent}`;
-
-        try {
-          // Show loading state
-          const submitBtn = form.querySelector('button[type="submit"]');
-          const originalBtnText = submitBtn.innerHTML;
-          submitBtn.innerHTML =
-            '<i class="fas fa-spinner fa-spin"></i><span class="ml-2">Classifying...</span>';
-          submitBtn.disabled = true;
-
-          // Call the API
-          const response = await fetch(
-            `http://0.0.0.0:8000/predict?text=${encodeURIComponent(fullText)}&threshold=0.55&return_all=true`
-          );
-
-          if (!response.ok) {
-            throw new Error(`API error: ${response.status}`);
-          }
-
-          const result = await response.json();
-          console.log("API Response:", result);
-
-          // Show result
-          emptyState.classList.add("hidden");
-          resultState.classList.remove("hidden");
-
-          // Extract predicted labels from predictions array
-          const predictedLabels = result.predictions
-            ? result.predictions.map((p) => p.label)
-            : [];
-
-          // Update labels
-          const labelsContainer = document.getElementById("result-labels");
-          if (predictedLabels.length > 0) {
-            labelsContainer.innerHTML = predictedLabels
-              .map(
-                (cat) =>
-                  `<span class="px-4 py-2 ${getCategoryColorClasses(cat)} rounded-full text-sm font-medium">${cat}</span>`
-              )
-              .join("");
-          } else {
-            labelsContainer.innerHTML =
-              '<span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">No category detected</span>';
-          }
-
-          // Update scores using all_probabilities array
-          const scoresContainer = document.getElementById("result-scores");
-          if (result.all_probabilities) {
-            scoresContainer.innerHTML = result.all_probabilities
-              .map(({ label, score }) => {
-                const percentage = (score * 100).toFixed(1);
-                const isAboveThreshold = score >= 0.55;
-                return `
-            <div>
-              <div class="flex justify-between text-sm mb-1">
-                <span class="text-gray-700">${label}</span>
-                <span class="font-medium ${isAboveThreshold ? "text-blue-600" : "text-gray-900"}">${percentage}%</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="${isAboveThreshold ? "bg-blue-500" : "bg-gray-400"} h-2 rounded-full transition-all" style="width: ${percentage}%"></div>
-              </div>
-            </div>
-          `;
-              })
-              .join("");
-          }
-
-          // Update email details
-          document.getElementById("result-title").textContent = emailTitle;
-          document.getElementById("result-sender").textContent = sender;
-          document.getElementById("result-time").textContent = new Date(
-            receiveTime
-          ).toLocaleString();
-
-          // Restore button
-          submitBtn.innerHTML = originalBtnText;
-          submitBtn.disabled = false;
-        } catch (error) {
-          console.error("Classification error:", error);
-          alert(
-            "Failed to classify email. Please check if the API is running at http://0.0.0.0:8000/"
-          );
-
-          // Restore button
-          const submitBtn = form.querySelector('button[type="submit"]');
-          submitBtn.innerHTML =
-            '<span>Classify mail</span><i class="fas fa-arrow-right ml-2"></i>';
-          submitBtn.disabled = false;
-        }
-      });
-
-      function getCategoryColorClasses(category) {
-        const colorMap = {
-          Business: "bg-blue-100 text-blue-700",
-          Personal: "bg-purple-100 text-purple-700",
-          Promotions: "bg-pink-100 text-pink-700",
-          "Customer Support": "bg-red-100 text-red-700",
-          "Job Application": "bg-indigo-100 text-indigo-700",
-          "Finance & Bills": "bg-yellow-100 text-yellow-700",
-          "Events & Invitations": "bg-green-100 text-green-700",
-          "Travel & Bookings": "bg-teal-100 text-teal-700",
-          Reminders: "bg-orange-100 text-orange-700",
-          Newsletters: "bg-cyan-100 text-cyan-700",
-        };
-        return colorMap[category] || "bg-gray-100 text-gray-700";
-      }
-    </script>
   </body>
 </html>
