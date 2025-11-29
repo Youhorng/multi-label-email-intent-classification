@@ -3,6 +3,7 @@ import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 # Setup path for imports - works both when run as module and directly
 _backend_dir = Path(__file__).parent
@@ -39,10 +40,18 @@ async def lifespan(app: FastAPI):
 # Initialize FastAPI app with lifespan
 app = FastAPI(title=API_TITLE, lifespan=lifespan)
 
+# Setup CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins - adjust for production
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
+
 # Setup middleware on the FastAPI app
 app = setup_logging_middleware(app)
 app = setup_error_handlers(app)
-
 # Include routes on the FastAPI app
 app.include_router(router)
 

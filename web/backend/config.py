@@ -29,3 +29,11 @@ API_TITLE = "Email Intent Classifier API"
 API_VERSION = "1.0.0"
 DEFAULT_THRESHOLD = 0.55
 
+# CORS Configuration
+CORS_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000",
+    # Add your production frontend URL here
+]

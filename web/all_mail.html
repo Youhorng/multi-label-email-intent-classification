@@ -133,7 +133,7 @@
                     Meiliang Chang
                   </h3>
                   <p class="text-sm text-gray-500">
-                    to me • starling@mail.com, bbc • korg@gmail.com
+                    <span id="email-sender-email">to me</span>
                   </p>
                 </div>
               </div>
@@ -142,89 +142,18 @@
               >
             </div>
 
-            <!-- Category Badge -->
-            <div class="mt-4">
-              <span
-                id="email-label"
-                class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full"
-                >Business</span
-              >
+            <!-- Category Badges -->
+            <div id="email-categories" class="mt-4 flex flex-wrap gap-2">
+              <!-- Categories will be rendered here -->
             </div>
           </div>
 
           <!-- Email Content (Gmail Style) -->
           <div class="flex-1 overflow-y-auto p-6">
             <div class="max-w-4xl mx-auto bg-white">
-              <!-- Gmail-style Banner (Optional) -->
-              <div class="mb-6 p-4 bg-gray-900 text-white rounded-lg">
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs text-gray-400"
-                    >Email not displaying correctly?</span
-                  >
-                  <a href="#" class="text-xs text-blue-400 hover:underline"
-                    >View it online</a
-                  >
-                </div>
-              </div>
-
               <!-- Main Email Body -->
               <div id="email-content" class="space-y-4 text-gray-900">
-                <div class="bg-gray-900 text-white p-8 rounded-lg text-center">
-                  <p class="text-sm text-gray-400 mb-6">Google AI Studio</p>
-                  <h1 class="text-4xl font-bold mb-8">
-                    Bring any idea to life with<br />Gemini 3
-                  </h1>
-                  <button
-                    class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-medium transition"
-                  >
-                    Try it free of charge
-                  </button>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg">
-                  <p class="text-gray-900 mb-4">Hi Khan,</p>
-
-                  <p class="text-gray-900 mb-4">
-                    You can now build and test with Gemini 3 in Google AI
-                    Studio, or access the model via the Gemini API with a paid
-                    key.
-                  </p>
-
-                  <ul class="space-y-3 text-gray-900 list-none">
-                    <li class="flex items-start">
-                      <span class="mr-2">•</span>
-                      <span
-                        ><strong>Vibe code:</strong> Build web apps with
-                        exceptional zero-shot generation and richer UI</span
-                      >
-                    </li>
-                    <li class="flex items-start">
-                      <span class="mr-2">•</span>
-                      <span
-                        ><strong>Reason across modalities:</strong> Handle
-                        complex multimodal inputs with state-of-the-art
-                        reasoning</span
-                      >
-                    </li>
-                    <li class="flex items-start">
-                      <span class="mr-2">•</span>
-                      <span
-                        ><strong>Build agents:</strong> Utilize improved agentic
-                        coding, tool use, and native code execution</span
-                      >
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                  <p class="text-sm text-gray-600">
-                    This is a promotional email from Google AI. If you'd like to
-                    unsubscribe,
-                    <a href="#" class="text-blue-600 hover:underline"
-                      >click here</a
-                    >.
-                  </p>
-                </div>
+                <!-- Content will be rendered here -->
               </div>
             </div>
           </div>
@@ -272,21 +201,21 @@
 
         <nav class="space-y-4">
           <a
-            href="#"
+            href="dashboard.html"
             class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition"
           >
             <i class="fas fa-chart-line"></i>
             <span>Dashboard</span>
           </a>
           <a
-            href="#"
+            href="all_mail.html"
             class="flex items-center space-x-3 text-blue-500 bg-blue-50 px-4 py-3 rounded-lg"
           >
             <i class="fas fa-inbox"></i>
             <span>Inbox</span>
           </a>
           <a
-            href="#"
+            href="classify_mail.html"
             class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition"
           >
             <i class="fas fa-file-alt"></i>
@@ -305,189 +234,41 @@
     </div>
 
     <script>
-      // Sample email data
-      const emails = [
-        {
-          id: 1,
-          sender: "Meiliang Chang",
-          subject: "How are you doing bro?",
-          preview:
-            "Bro, I just realized life is 90% vibes and 10% trying not to fall of...",
-          time: "12:00 AM",
-          label: "Business",
-          labelColor: "blue",
-          content: `
-            <div class="bg-gray-900 text-white p-8 rounded-lg text-center">
-              <p class="text-sm text-gray-400 mb-6">Google AI Studio</p>
-              <h1 class="text-4xl font-bold mb-8">
-                Bring any idea to life with<br />Gemini 3
-              </h1>
-              <button
-                class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-medium transition"
-              >
-                Try it free of charge
-              </button>
-            </div>
-            <div class="bg-white p-6 rounded-lg mt-4">
-              <p class="text-gray-900 mb-4">Hi Khan,</p>
-              <p class="text-gray-900 mb-4">
-                You can now build and test with Gemini 3 in Google AI
-                Studio, or access the model via the Gemini API with a paid
-                key.
-              </p>
-            </div>
-          `,
-        },
-        {
-          id: 2,
-          sender: "Sarah Johnson",
-          subject: "Project Update",
-          preview:
-            "Here's the latest update on the project we discussed last week...",
-          time: "11:30 AM",
-          label: "Work",
-          labelColor: "green",
-          content: `
-            <div class="bg-white p-6 rounded-lg">
-              <p class="text-gray-900 mb-4">Hi Team,</p>
-              <p class="text-gray-900 mb-4">
-                I wanted to share the latest updates on our project progress. We've made significant headway this week.
-              </p>
-              <ul class="space-y-2 text-gray-900 list-disc ml-6">
-                <li>Completed the backend API development</li>
-                <li>Frontend design is 80% complete</li>
-                <li>Testing phase will begin next Monday</li>
-              </ul>
-              <p class="text-gray-900 mt-4">Best regards,<br/>Sarah</p>
-            </div>
-          `,
-        },
-        {
-          id: 3,
-          sender: "Tech Newsletter",
-          subject: "Weekly Tech Digest",
-          preview:
-            "Top 10 trending technologies this week that you should know about...",
-          time: "Yesterday",
-          label: "Newsletter",
-          labelColor: "purple",
-          content: `
-            <div class="bg-white p-6 rounded-lg">
-              <h2 class="text-2xl font-bold mb-4">This Week's Top Tech Trends</h2>
-              <ol class="space-y-3 text-gray-900 list-decimal ml-6">
-                <li>AI advancements in healthcare</li>
-                <li>Quantum computing breakthroughs</li>
-                <li>5G network expansion</li>
-                <li>Sustainable tech innovations</li>
-                <li>Cybersecurity updates</li>
-              </ol>
-            </div>
-          `,
-        },
-        {
-          id: 4,
-          sender: "John Smith",
-          subject: "Meeting Reminder",
-          preview: "Don't forget about our meeting tomorrow at 2 PM...",
-          time: "2 days ago",
-          label: "Personal",
-          labelColor: "orange",
-          content: `
-            <div class="bg-white p-6 rounded-lg">
-              <p class="text-gray-900 mb-4">Hey,</p>
-              <p class="text-gray-900 mb-4">
-                Just a friendly reminder about our meeting scheduled for tomorrow at 2 PM. 
-                Please make sure to review the documents I sent earlier.
-              </p>
-              <p class="text-gray-900">See you then!<br/>John</p>
-            </div>
-          `,
-        },
-        {
-          id: 5,
-          sender: "Marketing Team",
-          subject: "Q4 Campaign Results",
-          preview:
-            "Great news! Our Q4 campaign exceeded expectations by 25%...",
-          time: "3 days ago",
-          label: "Business",
-          labelColor: "blue",
-          content: `
-            <div class="bg-white p-6 rounded-lg">
-              <p class="text-gray-900 mb-4">Dear Team,</p>
-              <p class="text-gray-900 mb-4">
-                I'm thrilled to announce that our Q4 campaign has exceeded all expectations! 
-                We've achieved a 25% increase over our initial projections.
-              </p>
-              <p class="text-gray-900 mb-4">Key highlights:</p>
-              <ul class="space-y-2 text-gray-900 list-disc ml-6 mb-4">
-                <li>ROI increased by 30%</li>
-                <li>Customer engagement up 45%</li>
-                <li>Conversion rate improved by 20%</li>
-              </ul>
-              <p class="text-gray-900">Congratulations to everyone involved!</p>
-            </div>
-          `,
-        },
-        {
-          id: 6,
-          sender: "Customer Support",
-          subject: "Ticket #12345 Resolved",
-          preview:
-            "Your support ticket has been resolved. Let us know if you need...",
-          time: "4 days ago",
-          label: "Support",
-          labelColor: "red",
-          content: `
-            <div class="bg-white p-6 rounded-lg">
-              <p class="text-gray-900 mb-4">Hello,</p>
-              <p class="text-gray-900 mb-4">
-                We're happy to inform you that your support ticket #12345 has been resolved. 
-                Our team has addressed the issue you reported.
-              </p>
-              <p class="text-gray-900 mb-4">
-                If you have any further questions or concerns, please don't hesitate to reach out.
-              </p>
-              <p class="text-gray-900">Best regards,<br/>Support Team</p>
-            </div>
-          `,
-        },
-        {
-          id: 7,
-          sender: "Finance Department",
-          subject: "Invoice #INV-2024-001",
-          preview:
-            "Please find attached the invoice for services rendered in January...",
-          time: "5 days ago",
-          label: "Finance",
-          labelColor: "yellow",
-          content: `
-            <div class="bg-white p-6 rounded-lg">
-              <p class="text-gray-900 mb-4">Dear Valued Customer,</p>
-              <p class="text-gray-900 mb-4">
-                Please find attached Invoice #INV-2024-001 for services rendered in January 2024.
-              </p>
-              <p class="text-gray-900 mb-4">
-                Payment is due within 30 days. If you have any questions regarding this invoice, 
-                please contact our finance department.
-              </p>
-              <p class="text-gray-900">Thank you for your business!</p>
-            </div>
-          `,
-        },
-      ];
+      // Function to load emails from localStorage
+      function loadEmailsFromStorage() {
+        const storedEmails = localStorage.getItem("gmail_emails");
 
-      // Function to get label color classes
-      function getLabelColorClasses(color) {
-        const colors = {
-          blue: "bg-blue-100 text-blue-700",
-          green: "bg-green-100 text-green-700",
-          purple: "bg-purple-100 text-purple-700",
-          orange: "bg-orange-100 text-orange-700",
-          red: "bg-red-100 text-red-700",
-          yellow: "bg-yellow-100 text-yellow-700",
+        if (storedEmails) {
+          try {
+            return JSON.parse(storedEmails);
+          } catch (e) {
+            console.error("Error parsing stored emails:", e);
+            return [];
+          }
+        }
+
+        // Return empty array if no emails stored
+        return [];
+      }
+
+      // Load emails from localStorage
+      const emails = loadEmailsFromStorage();
+
+      // Function to get category color classes
+      function getCategoryColorClasses(category) {
+        const colorMap = {
+          Business: "bg-blue-100 text-blue-700",
+          Personal: "bg-purple-100 text-purple-700",
+          Promotions: "bg-pink-100 text-pink-700",
+          "Customer Support": "bg-red-100 text-red-700",
+          "Job Application": "bg-indigo-100 text-indigo-700",
+          "Finance & Bills": "bg-yellow-100 text-yellow-700",
+          "Events & Invitations": "bg-green-100 text-green-700",
+          "Travel & Bookings": "bg-teal-100 text-teal-700",
+          Reminders: "bg-orange-100 text-orange-700",
+          Newsletters: "bg-cyan-100 text-cyan-700",
         };
-        return colors[color] || colors.blue;
+        return colorMap[category] || "bg-gray-100 text-gray-700";
       }
 
       // Function to update email detail view
@@ -498,6 +279,10 @@
         // Update sender
         document.getElementById("email-sender").textContent = email.sender;
 
+        // Update sender email
+        const senderEmailEl = document.getElementById("email-sender-email");
+        senderEmailEl.textContent = `to ${email.to || "me"}`;
+
         // Update avatar (first letter of sender's name)
         const avatarLetter = email.sender.charAt(0).toUpperCase();
         document.getElementById("email-avatar").textContent = avatarLetter;
@@ -505,10 +290,21 @@
         // Update time
         document.getElementById("email-time").textContent = email.time;
 
-        // Update label
-        const labelElement = document.getElementById("email-label");
-        labelElement.textContent = email.label;
-        labelElement.className = `inline-block px-3 py-1 ${getLabelColorClasses(email.labelColor)} text-sm rounded-full`;
+        // Update categories
+        const categoriesContainer = document.getElementById("email-categories");
+        if (email.categories && email.categories.length > 0) {
+          categoriesContainer.innerHTML = email.categories
+            .map(
+              (category) =>
+                `<span class="inline-block px-3 py-1 ${getCategoryColorClasses(category)} text-sm font-medium rounded-full">
+                  ${category}
+                </span>`
+            )
+            .join("");
+          categoriesContainer.style.display = "flex";
+        } else {
+          categoriesContainer.style.display = "none";
+        }
 
         // Update content
         document.getElementById("email-content").innerHTML = email.content;
@@ -522,27 +318,56 @@
       function renderEmailList() {
         const emailListContainer = document.getElementById("email-list");
 
+        // Check if emails array is empty
+        if (emails.length === 0) {
+          emailListContainer.innerHTML = `
+                <div class="p-8 text-center">
+                  <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+                  <p class="text-gray-500 text-lg font-medium mb-2">No emails found</p>
+                  <p class="text-gray-400 text-sm mb-4">Please sync your Gmail account first</p>
+                  <a href="gmail.html" class="inline-block px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition">
+                    Sync Gmail
+                  </a>
+                </div>
+              `;
+          return;
+        }
+
         emailListContainer.innerHTML = emails
           .map(
             (email, index) => `
-          <div
-            class="email-item border-l-4 ${index === 0 ? "border-blue-500 bg-blue-50" : "border-transparent"} p-4 cursor-pointer hover:bg-${index === 0 ? "blue" : "gray"}-${index === 0 ? "100" : "50"} transition"
-            data-email-id="${email.id}"
-          >
-            <div class="flex items-start justify-between mb-2">
-              <h3 class="font-semibold text-gray-900 text-base md:text-lg">
-                ${email.sender}
-              </h3>
-              <span class="text-sm text-gray-500">${email.time}</span>
-            </div>
-            <p class="text-sm md:text-base text-gray-600 mb-2 line-clamp-2">
-              ${email.preview}
-            </p>
-            <span class="inline-block px-3 py-1 ${getLabelColorClasses(email.labelColor)} text-sm font-medium rounded-full">
-              ${email.label}
-            </span>
-          </div>
-        `
+              <div
+                class="email-item border-l-4 ${index === 0 ? "border-blue-500 bg-blue-50" : "border-transparent"} p-4 cursor-pointer hover:bg-${index === 0 ? "blue" : "gray"}-${index === 0 ? "100" : "50"} transition"
+                data-email-id="${email.id}"
+              >
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="font-semibold text-gray-900 text-base md:text-lg">
+                    ${email.sender}
+                  </h3>
+                  <span class="text-sm text-gray-500">${email.time}</span>
+                </div>
+                <p class="text-sm md:text-base font-medium text-gray-800 mb-1">
+                  ${email.subject}
+                </p>
+                <p class="text-sm text-gray-600 mb-2 line-clamp-2">
+                  ${email.preview}
+                </p>
+                ${
+                  email.categories && email.categories.length > 0
+                    ? `<div class="flex flex-wrap gap-1 mt-2">
+                        ${email.categories
+                          .map(
+                            (category) =>
+                              `<span class="inline-block px-2 py-0.5 ${getCategoryColorClasses(category)} text-xs font-medium rounded-full">
+                                ${category}
+                              </span>`
+                          )
+                          .join("")}
+                      </div>`
+                    : ""
+                }
+              </div>
+            `
           )
           .join("");
 
@@ -564,7 +389,7 @@
 
         emailItems.forEach((item) => {
           item.addEventListener("click", function () {
-            const emailId = parseInt(this.getAttribute("data-email-id"));
+            const emailId = this.getAttribute("data-email-id");
             const selectedEmail = emails.find((email) => email.id === emailId);
 
             // Remove active state from all items
