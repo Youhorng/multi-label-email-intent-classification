@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="m-0 p-0">
+<body class="m-0 p-0 w-full overflow-x-hidden ">
 
     <header class="bg-white shadow-sm w-full">
         <nav class="w-full px-4 md:px-6 py-4 flex items-center justify-between">
@@ -17,15 +17,15 @@
                 <img src="./images/Logo.png" alt="smart logo" class="w-auto h-10 md:h-12">
             </div>
             
-            <!-- Navigation Link - Desktop -->
+            <!-- Navigation Link-->
             <div class="hidden md:flex items-center space-x-6 lg:space-x-14 flex-1 justify-center">
-                <a href="#home" class="text-gray-700 hover:text-blue-500 text-base lg:text-lg font-medium transition">Home</a>
-                <a href="#features" class="text-gray-700 hover:text-blue-500 text-base lg:text-lg font-medium transition">Key Features</a>
-                <a href="#how" class="text-gray-700 hover:text-blue-500 text-base lg:text-lg font-medium transition">How it works</a>
-                <a href="#about" class="text-gray-700 hover:text-blue-500 text-base lg:text-lg font-medium transition">About us</a>
+                <a href="#home" class="text-gray-700 hover:text-blue-500 text-base lg:text-xl font-medium transition">Home</a>
+                <a href="#features" class="text-gray-700 hover:text-blue-500 text-base lg:text-xl font-medium transition">Key Features</a>
+                <a href="#how" class="text-gray-700 hover:text-blue-500 text-base lg:text-xl font-medium transition">How it works</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-500 text-base lg:text-xl font-medium transition">About us</a>
             </div>
             
-            <!-- Sign In Button - Desktop -->
+            <!-- Sign In Button-->
             <button class="hidden md:flex bg-gradient-to-l from-[#1D53CF] to-[#26A9E0] opacity-75 text-white px-4 lg:px-8 py-2 lg:py-3 rounded-lg items-center space-x-2 shadow-md transition text-sm lg:text-base">
                 <i class="fab fa-google"></i>
                 <span class="font-medium">Sign In With Google</span>
@@ -52,181 +52,36 @@
         </div>
     </header>
 
-    <!-- Hero + Key Features Container with Background -->
-    <div class="relative w-full" 
-        style="background-image: url('./images/Elipse Design.svg'); 
-                background-position: right top; 
-                background-repeat: no-repeat; 
-                background-size: 40% auto;">
+    <!-- Key Features Container with Background -->
+    <div class="relative w-full">
         
-        <!-- Hero Section -->
-        <section class="w-full px-6 py-16">
-            <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
-                <!-- Left Content -->
-                <div class="w-full self-start justify-self-start ml-[10px]">
-                    <h1 class="text-7xl md:text-7xl font-bold text-gray-900 mb-4">
-                        Your Inbox sort by.<br>
-                        <span class="text-blue-500">Smart Mailbox</span>
-                    </h1>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        Say goodbye to cluttered emails. Smart Mailbox automatically classifies and groups your messages using AI, so important emails rise to the top while spam and low-priority content stay out of your way.
-                    </p>
-                    <button class="bg-gradient-to-r from-[#1D53CF] to-[#26A9E0] opacity-71 hover:bg-blue-600 text-white px-8 py-4 rounded-lg flex items-center space-x-3 shadow-lg transition">
-                        <i class="fab fa-google text-xl"></i>
-                        <span class="font-semibold text-lg">Sign In with Google</span>
-                    </button>
-                    
-                    <p class="text-sm text-gray-500 mt-3">No credit card required • Free to start</p>
-                </div>
-                
-                <!-- Right Content - Feature Cards -->
-                <div class="relative w-full">
-                    <div class="hidden lg:block relative min-h-[600px]">
-                        <!-- Stay Focused  -->
-                        <div class="absolute top-0 right-0 w-[420px] bg-gradient-to-l from-[#1D53CF] to-[#26A9E0] opacity-75 rounded-[32px] p-8 shadow-2xl">
-                            <div class="flex flex-col items-start space-y-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-16 h-16 bg-white rounded-3xl flex items-center justify-center shadow-lg p-4">
-                                        <i class="fas fa-crosshairs text-blue-500 text-2xl"></i>
-                                    </div>
-                                    <h3 class="text-2xl font-semibold text-white">Stay Focused</h3>
-                                </div>
-                                <p class="text-blue-50 text-sm leading-relaxed">
-                                    Keep your attention on what truly matters. By highlighting priority emails and minimizing distractions.
-                                </p>
-                            </div>
-                        </div>
+<!-- Hero Section -->
+<section class="w-full px-6 py-16 bg-white">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        
+        <!-- Left Content -->
+        <div class="w-full md:w-1/2 order-1">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4">
+                Your Inbox sorted by.<br>
+                <span class="text-blue-500">Smart Mailbox</span>
+            </h1>
+            <p class="text-base md:text-lg text-gray-600 mb-8 leading-relaxed">
+                Say goodbye to cluttered emails. Smart Mailbox automatically classifies and groups your messages using AI, so important emails rise to the top while spam and low-priority content stay out of your way.
+            </p>
+            <button class="bg-gradient-to-r from-[#1D53CF] to-[#26A9E0] hover:from-[#1B4FCC] hover:to-[#22A7E0] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg flex items-center space-x-3 shadow-lg transition-transform transform hover:scale-105">
+                <i class="fab fa-google text-lg md:text-xl"></i>
+                <span class="font-semibold text-base md:text-lg">Sign In with Google</span>
+            </button>
+            <p class="text-sm text-gray-500 mt-3">No credit card required • Free to start</p>
+        </div>
+        
+        <!-- Right Content -->
+        <div class="w-full md:w-1/2 order-2 mt-8 md:mt-0">
+            <img src="./images/3 boxes.jpg" alt="3-boxes">
+        </div>
 
-                        <!-- Time Saving (middle-left) -->
-                        <div class="absolute top-28 left-12 w-[420px] bg-gradient-to-r from-[#1D53CF] to-[#26A9E0] opacity-75 rounded-[32px] p-8 shadow-2xl">
-                            <div class="flex flex-col items-start space-y-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-16 h-16 bg-white rounded-3xl flex items-center justify-center shadow-lg p-4">
-                                        <i class="fas fa-clock text-blue-500 text-2xl"></i>
-                                    </div>
-                                    <h3 class="text-2xl font-semibold text-white">Time Saving</h3>
-                                </div>
-                                <p class="text-blue-50 text-sm leading-relaxed">
-                                    No more scrolling through clutter. Smart Mailbox keeps your emails neatly sorted so the important stuff is always just a glance away.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Reduce Stress (bottom-center) -->
-                        <div class="absolute top-[340px] left-1/2 -translate-x-1/2 w-[420px] bg-gradient-to-bl from-[#1D53CF] to-[#26A9E0] opacity-75 rounded-[32px] p-8 shadow-2xl">
-                            <div class="flex flex-col items-start space-y-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="w-16 h-16 bg-white rounded-3xl flex items-center justify-center shadow-lg p-4">
-                                        <i class="fas fa-smile text-blue-500 text-2xl"></i>
-                                    </div>
-                                    <h3 class="text-2xl font-semibold text-white">Reduce Stress</h3>
-                                </div>
-                                <p class="text-blue-50 text-sm leading-relaxed">
-                                    Enjoy a cleaner, calmer inbox experience. With fewer unnecessary notifications and a more organized view.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tablet: Stacked with slight offset -->
-                    <div class="hidden md:block lg:hidden space-y-6">
-                        <!-- Stay Focused -->
-                        <div class="w-full max-w-[500px] ml-auto bg-gradient-to-l from-[#1D53CF] to-[#26A9E0] opacity-75 rounded-[28px] p-6 shadow-xl">
-                            <div class="flex flex-col items-start space-y-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg p-3">
-                                        <i class="fas fa-crosshairs text-blue-500 text-xl"></i>
-                                    </div>
-                                    <h3 class="text-xl font-semibold text-white">Stay Focused</h3>
-                                </div>
-                                <p class="text-blue-50 text-sm leading-relaxed">
-                                    Keep your attention on what truly matters. By highlighting priority emails and minimizing distractions.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Time Saving -->
-                        <div class="w-full max-w-[500px] bg-gradient-to-l from-[#1D53CF] to-[#26A9E0] opacity-75 rounded-[28px] p-6 shadow-xl">
-                            <div class="flex flex-col items-start space-y-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg p-3">
-                                        <i class="fas fa-clock text-blue-500 text-xl"></i>
-                                    </div>
-                                    <h3 class="text-xl font-semibold text-white">Time Saving</h3>
-                                </div>
-                                <p class="text-blue-50 text-sm leading-relaxed">
-                                    No more scrolling through clutter. Smart Mailbox keeps your emails neatly sorted.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Reduce Stress -->
-                        <div class="w-full max-w-[500px] ml-auto bg-gradient-to-l from-[#1D53CF] to-[#26A9E0] opacity-75 rounded-[28px] p-6 shadow-xl">
-                            <div class="flex flex-col items-start space-y-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg p-3">
-                                        <i class="fas fa-smile text-blue-500 text-xl"></i>
-                                    </div>
-                                    <h3 class="text-xl font-semibold text-white">Reduce Stress</h3>
-                                </div>
-                                <p class="text-blue-50 text-sm leading-relaxed">
-                                    Enjoy a cleaner, calmer inbox experience with fewer interruptions.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mobile: Simple stacked cards -->
-                    <div class="md:hidden space-y-4">
-                        <!-- Stay Focused -->
-                        <div class="w-full bg-gradient-to-l from-[#1D53CF] to-[#26A9E0] opacity-75 rounded-[24px] p-5 shadow-xl">
-                            <div class="flex flex-col items-start space-y-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                                        <i class="fas fa-crosshairs text-blue-500 text-lg"></i>
-                                    </div>
-                                    <h3 class="text-lg font-semibold text-white">Stay Focused</h3>
-                                </div>
-                                <p class="text-blue-50 text-xs leading-relaxed">
-                                    Keep your attention on what truly matters by highlighting priority emails.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Time Saving -->
-                        <div class="w-full bg-gradient-to-l from-[#1D53CF] to-[#26A9E0] opacity-75 rounded-[24px] p-5 shadow-xl">
-                            <div class="flex flex-col items-start space-y-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                                        <i class="fas fa-clock text-blue-500 text-lg"></i>
-                                    </div>
-                                    <h3 class="text-lg font-semibold text-white">Time Saving</h3>
-                                </div>
-                                <p class="text-blue-50 text-xs leading-relaxed">
-                                    No more scrolling through clutter. Smart Mailbox keeps emails sorted.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Reduce Stress -->
-                        <div class="w-full bg-gradient-to-l from-[#1D53CF] to-[#26A9E0] opacity-75 rounded-[24px] p-5 shadow-xl">
-                            <div class="flex flex-col items-start space-y-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                                        <i class="fas fa-smile text-blue-500 text-lg"></i>
-                                    </div>
-                                    <h3 class="text-lg font-semibold text-white">Reduce Stress</h3>
-                                </div>
-                                <p class="text-blue-50 text-xs leading-relaxed">
-                                    Enjoy a cleaner, calmer inbox experience with fewer interruptions.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
+    </div>
+</section>
         
         <div class="relative w-full"
             style="background-image: url('./images/Elipse Design-3.svg');
@@ -334,7 +189,7 @@
                     </div>
                 </div>
 
-                <!-- Demo Image -->
+                <!-- Image -->
                 <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl p-4 shadow-2xl">
                     <div class="bg-gray-900 rounded-2xl p-6 relative">
                         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -360,66 +215,80 @@
 
     
         <!-- About Us Section -->
-        <section id="about" class="w-full px-6 py-20 bg-white bg-opacity-0 ">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3">About Us</h2>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                        We're a passionate team of engineers and designers dedicated to solving email overload. Our mission is to help professionals reclaim their time and focus on what truly matters.
-                    </p>
+        <section id="about" class="w-full px-6 py-20 ">
+            <div class="
+                w-full max-w-[1600px] mx-auto
+                rounded-[32px]
+                
+                "
+                style="
+                    background-image: url('./images/about.png');
+                    background-position: center top;
+                    background-repeat: no-repeat;
+                    background-size: 140% auto;
+                "
+            >
+                <div class="px-4 md:px-8 lg:px-12 py-4 md:py-8 lg:py-12">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3">About Us</h2>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                            We're a passionate team of engineers and designers dedicated to solving email overload. Our mission is to help professionals reclaim their time and focus on what truly matters.
+                        </p>
+                    </div>
+                    <!-- Team Member Card -->
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-12">
+                        
+                        <div class="text-center">
+                            <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-blue-200 to-blue-400 shadow-lg">
+                                <img src="./images/photo1.jpeg" alt="Alex Johnson" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-gray-900">Alex Johnson</h4>
+                            <p class="text-sm text-gray-500">CEO & Founder</p>
+                            <p class="text-xs text-gray-400 mt-1">Product visionary with 10+ years in email AI expert</p>
+                        </div>
+
+                        
+                        <div class="text-center">
+                            <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-pink-200 to-pink-400 shadow-lg">
+                                <img src="./images/photo1.jpeg" alt="Sarah Chen" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-gray-900">Sarah Chen</h4>
+                            <p class="text-sm text-gray-500">Lead AI Engineer</p>
+                            <p class="text-xs text-gray-400 mt-1">ML expert specializing in NLP and classification</p>
+                        </div>
+
+                       
+                        <div class="text-center">
+                            <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-blue-200 to-blue-400 shadow-lg">
+                                <img src="./images/photo1.jpeg" alt="Alex Johnson" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-gray-900">Alex Johnson</h4>
+                            <p class="text-sm text-gray-500">CEO & Founder</p>
+                            <p class="text-xs text-gray-400 mt-1">Product visionary with 10+ years</p>
+                        </div>
+
+                        
+                        <div class="text-center">
+                            <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-pink-200 to-pink-400 shadow-lg">
+                                <img src="./images/photo2.jpeg" alt="Sarah Chen" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-gray-900">Sarah Chen</h4>
+                            <p class="text-sm text-gray-500">Lead AI Engineer</p>
+                            <p class="text-xs text-gray-400 mt-1">ML expert specializing in NLP</p>
+                        </div>
+
+                        
+                        <div class="text-center">
+                            <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-pink-200 to-pink-400 shadow-lg">
+                                <img src="./images/photo2.jpeg" alt="Sarah Chen" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-gray-900">Sarah Chen</h4>
+                            <p class="text-sm text-gray-500">Lead AI Engineer</p>
+                            <p class="text-xs text-gray-400 mt-1">ML expert specializing in NLP</p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
-                    <!-- Team Member 1 -->
-                    <div class="text-center">
-                        <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-blue-200 to-blue-400 shadow-lg">
-                            <img src="./images/photo1.jpeg" alt="Alex Johnson" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold text-gray-900">Alex Johnson</h4>
-                        <p class="text-sm text-gray-500">CEO & Founder</p>
-                        <p class="text-xs text-gray-400 mt-1">Product visionary with 10+ years in email AI expert</p>
-                    </div>
-
-                    <!-- Team Member 2 -->
-                    <div class="text-center">
-                        <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-pink-200 to-pink-400 shadow-lg">
-                            <img src="./images/photo1.jpeg" alt="Sarah Chen" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold text-gray-900">Sarah Chen</h4>
-                        <p class="text-sm text-gray-500">Lead AI Engineer</p>
-                        <p class="text-xs text-gray-400 mt-1">ML expert specializing in NLP and classification</p>
-                    </div>
-
-                    <!-- Team Member 3 -->
-                    <div class="text-center">
-                        <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-blue-200 to-blue-400 shadow-lg">
-                            <img src="./images/photo1.jpeg" alt="Alex Johnson" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold text-gray-900">Alex Johnson</h4>
-                        <p class="text-sm text-gray-500">CEO & Founder</p>
-                        <p class="text-xs text-gray-400 mt-1">Product visionary with 10+ years</p>
-                    </div>
-
-                    <!-- Team Member 4 -->
-                    <div class="text-center">
-                        <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-pink-200 to-pink-400 shadow-lg">
-                            <img src="./images/photo2.jpeg" alt="Sarah Chen" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold text-gray-900">Sarah Chen</h4>
-                        <p class="text-sm text-gray-500">Lead AI Engineer</p>
-                        <p class="text-xs text-gray-400 mt-1">ML expert specializing in NLP</p>
-                    </div>
-
-                    <!-- Team Member 5 -->
-                    <div class="text-center">
-                        <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br from-pink-200 to-pink-400 shadow-lg">
-                            <img src="./images/photo2.jpeg" alt="Sarah Chen" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold text-gray-900">Sarah Chen</h4>
-                        <p class="text-sm text-gray-500">Lead AI Engineer</p>
-                        <p class="text-xs text-gray-400 mt-1">ML expert specializing in NLP</p>
-                    </div>
-                </div>
+                
             </div>
         </section>
 
