@@ -326,54 +326,113 @@
         const receiveTime = document.getElementById("receive-time").value;
         const emailContent = document.getElementById("email-content").value;
 
-        // Mock classification (replace with actual API call)
-        const mockCategories = ["Work", "Important"];
-        const mockScores = {
-          Work: 0.89,
-          Personal: 0.12,
-          Promotions: 0.05,
-          Important: 0.76,
-        };
+        // Combine title and content for classification
+        const fullText = `${emailTitle}\n\n${emailContent}`;
 
-        // Show result
-        emptyState.classList.add("hidden");
-        resultState.classList.remove("hidden");
+        try {
+          // Show loading state
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i><span class="ml-2">Classifying...</span>';
+          submitBtn.disabled = true;
 
-        // Update labels
-        const labelsContainer = document.getElementById("result-labels");
-        labelsContainer.innerHTML = mockCategories
-          .map(
-            (cat) =>
-              `<span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">${cat}</span>`
-          )
-          .join("");
+          // Call the API
+          const response = await fetch(
+            `http://0.0.0.0:8000/predict?text=${encodeURIComponent(fullText)}&threshold=0.55&return_all=true`
+          );
 
-        // Update scores
-        const scoresContainer = document.getElementById("result-scores");
-        scoresContainer.innerHTML = Object.entries(mockScores)
-          .map(([category, score]) => {
-            const percentage = (score * 100).toFixed(1);
-            return `
-                    <div>
-                        <div class="flex justify-between text-sm mb-1">
-                            <span class="text-gray-700">${category}</span>
-                            <span class="font-medium text-gray-900">${percentage}%</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-blue-500 h-2 rounded-full transition-all" style="width: ${percentage}%"></div>
-                        </div>
-                    </div>
-                `;
-          })
-          .join("");
+          if (!response.ok) {
+            throw new Error(`API error: ${response.status}`);
+          }
 
-        // Update email details
-        document.getElementById("result-title").textContent = emailTitle;
-        document.getElementById("result-sender").textContent = sender;
-        document.getElementById("result-time").textContent = new Date(
-          receiveTime
-        ).toLocaleString();
+          const result = await response.json();
+          console.log("API Response:", result);
+
+          // Show result
+          emptyState.classList.add("hidden");
+          resultState.classList.remove("hidden");
+
+          // Extract predicted labels from predictions array
+          const predictedLabels = result.predictions
+            ? result.predictions.map((p) => p.label)
+            : [];
+
+          // Update labels
+          const labelsContainer = document.getElementById("result-labels");
+          if (predictedLabels.length > 0) {
+            labelsContainer.innerHTML = predictedLabels
+              .map(
+                (cat) =>
+                  `<span class="px-4 py-2 ${getCategoryColorClasses(cat)} rounded-full text-sm font-medium">${cat}</span>`
+              )
+              .join("");
+          } else {
+            labelsContainer.innerHTML =
+              '<span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">No category detected</span>';
+          }
+
+          // Update scores using all_probabilities array
+          const scoresContainer = document.getElementById("result-scores");
+          if (result.all_probabilities) {
+            scoresContainer.innerHTML = result.all_probabilities
+              .map(({ label, score }) => {
+                const percentage = (score * 100).toFixed(1);
+                const isAboveThreshold = score >= 0.55;
+                return `
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="text-gray-700">${label}</span>
+                <span class="font-medium ${isAboveThreshold ? "text-blue-600" : "text-gray-900"}">${percentage}%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="${isAboveThreshold ? "bg-blue-500" : "bg-gray-400"} h-2 rounded-full transition-all" style="width: ${percentage}%"></div>
+              </div>
+            </div>
+          `;
+              })
+              .join("");
+          }
+
+          // Update email details
+          document.getElementById("result-title").textContent = emailTitle;
+          document.getElementById("result-sender").textContent = sender;
+          document.getElementById("result-time").textContent = new Date(
+            receiveTime
+          ).toLocaleString();
+
+          // Restore button
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        } catch (error) {
+          console.error("Classification error:", error);
+          alert(
+            "Failed to classify email. Please check if the API is running at http://0.0.0.0:8000/"
+          );
+
+          // Restore button
+          const submitBtn = form.querySelector('button[type="submit"]');
+          submitBtn.innerHTML =
+            '<span>Classify mail</span><i class="fas fa-arrow-right ml-2"></i>';
+          submitBtn.disabled = false;
+        }
       });
+
+      function getCategoryColorClasses(category) {
+        const colorMap = {
+          Business: "bg-blue-100 text-blue-700",
+          Personal: "bg-purple-100 text-purple-700",
+          Promotions: "bg-pink-100 text-pink-700",
+          "Customer Support": "bg-red-100 text-red-700",
+          "Job Application": "bg-indigo-100 text-indigo-700",
+          "Finance & Bills": "bg-yellow-100 text-yellow-700",
+          "Events & Invitations": "bg-green-100 text-green-700",
+          "Travel & Bookings": "bg-teal-100 text-teal-700",
+          Reminders: "bg-orange-100 text-orange-700",
+          Newsletters: "bg-cyan-100 text-cyan-700",
+        };
+        return colorMap[category] || "bg-gray-100 text-gray-700";
+      }
     </script>
   </body>
 </html>
