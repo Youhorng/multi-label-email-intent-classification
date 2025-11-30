@@ -1,7 +1,5 @@
 # 📧 Multi-Label Email Intent Classification
 
-[Project Link](https://github.com/Youhorng/multi-label-email-intent-classification)
-
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
