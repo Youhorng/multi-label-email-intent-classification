@@ -8,3 +8,13 @@ wheels/
 
 # Virtual environments
 .venv
+
+*.DS_Store
+
+node_modules/
+
+notebooks/encoder_only_finetuning/outputs/
+*.bin
+*.safetensors
+
+distilbert-lora-multilabel-email-intent-classification/

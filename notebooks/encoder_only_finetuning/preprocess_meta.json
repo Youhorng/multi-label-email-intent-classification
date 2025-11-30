@@ -1,0 +1,28 @@
+{
+  "model_name": "distilbert-base-uncased",
+  "max_length": 256,
+  "label2id": {
+    "Business": 0,
+    "Customer Support": 1,
+    "Events & Invitations": 2,
+    "Finance & Bills": 3,
+    "Job Application": 4,
+    "Newsletters": 5,
+    "Personal": 6,
+    "Promotions": 7,
+    "Reminders": 8,
+    "Travel & Bookings": 9
+  },
+  "id2label": {
+    "0": "Business",
+    "1": "Customer Support",
+    "2": "Events & Invitations",
+    "3": "Finance & Bills",
+    "4": "Job Application",
+    "5": "Newsletters",
+    "6": "Personal",
+    "7": "Promotions",
+    "8": "Reminders",
+    "9": "Travel & Bookings"
+  }
+}

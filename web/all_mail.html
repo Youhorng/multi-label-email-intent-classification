@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inbox - Smart Mailbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="script/all_mail.js"></script>
+  </head>
+  <body class="bg-gray-50 m-0 p-0">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="hidden md:flex md:w-20 bg-white shadow-lg flex-col items-center py-6 space-y-8 fixed left-0 top-0 h-screen z-30"
+      >
+        <a
+          href="#"
+          class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center text-white hover:bg-blue-600 transition"
+        >
+          <i class="fas fa-envelope text-xl"></i>
+        </a>
+
+        <a
+          href="dashboard.html"
+          class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition"
+        >
+          <i class="fas fa-chart-line text-xl"></i>
+        </a>
+
+        <a
+          href="all_mail.html"
+          class="w-12 h-12 flex items-center justify-center text-blue-500 bg-blue-50 rounded-xl transition"
+        >
+          <i class="fas fa-inbox text-xl"></i>
+        </a>
+
+        <a
+          href="classify_mail.html"
+          class="w-12 h-12 flex items-center justify-center text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-xl transition"
+        >
+          <i class="fas fa-file-alt text-xl"></i>
+        </a>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 w-full flex md:ml-20">
+        <!-- Email List Panel -->
+        <div
+          class="w-full md:w-80 lg:w-96 bg-white border-r border-gray-200 flex flex-col md:fixed md:left-20 md:top-0 md:h-screen md:z-20"
+        >
+          <!-- Mobile Header -->
+          <div
+            class="md:hidden bg-white shadow-sm px-4 py-4 flex items-center justify-between border-b"
+          >
+            <button id="mobile-sidebar-btn" class="text-gray-600">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+            <h1 class="text-lg font-bold text-gray-900">Inbox</h1>
+            <div class="w-6"></div>
+          </div>
+
+          <!-- Header -->
+          <div class="p-4 md:p-6 border-b border-gray-200">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              Inbox
+            </h1>
+
+            <!-- Search Bar -->
+            <div class="relative">
+              <input
+                type="text"
+                placeholder="Search mail..."
+                class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm"
+              />
+              <i
+                class="fas fa-search absolute left-3 top-3.5 text-gray-400"
+              ></i>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex items-center space-x-4 mt-4">
+              <div class="relative">
+                <button
+                  id="label-filter-btn"
+                  class="flex items-center space-x-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
+                >
+                  <i class="fas fa-tags text-gray-600"></i>
+                  <span class="text-gray-700">All labels</span>
+                  <i class="fas fa-chevron-down text-gray-600 text-xs"></i>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div
+                  id="label-dropdown"
+                  class="hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 z-10"
+                >
+                  <div class="py-2">
+                    <button
+                      data-label="all"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span>All labels</span>
+                    </button>
+                    <button
+                      data-label="Business"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                      <span>Business</span>
+                    </button>
+                    <button
+                      data-label="Personal"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                      <span>Personal</span>
+                    </button>
+                    <button
+                      data-label="Promotions"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-pink-500"></span>
+                      <span>Promotions</span>
+                    </button>
+                    <button
+                      data-label="Customer Support"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                      <span>Customer Support</span>
+                    </button>
+                    <button
+                      data-label="Job Application"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                      <span>Job Application</span>
+                    </button>
+                    <button
+                      data-label="Finance & Bills"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                      <span>Finance & Bills</span>
+                    </button>
+                    <button
+                      data-label="Events & Invitations"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                      <span>Events & Invitations</span>
+                    </button>
+                    <button
+                      data-label="Travel & Bookings"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+                      <span>Travel & Bookings</span>
+                    </button>
+                    <button
+                      data-label="Reminders"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                      <span>Reminders</span>
+                    </button>
+                    <button
+                      data-label="Newsletters"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                      <span>Newsletters</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative">
+                <button
+                  id="sort-filter-btn"
+                  class="flex items-center space-x-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm transition"
+                >
+                  <i class="fas fa-sort text-gray-600"></i>
+                  <span class="text-gray-700">Newest</span>
+                  <i class="fas fa-chevron-down text-gray-600 text-xs"></i>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div
+                  id="sort-dropdown"
+                  class="hidden absolute top-full left-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 z-10"
+                >
+                  <div class="py-2">
+                    <button
+                      data-sort="newest"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Newest first
+                    </button>
+                    <button
+                      data-sort="oldest"
+                      class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Oldest first
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email List -->
+          <div id="email-list" class="flex-1 overflow-y-auto"></div>
+        </div>
+
+        <!-- Email Detail Panel (Hidden on Mobile) -->
+        <div
+          id="email-detail"
+          class="hidden md:flex flex-1 flex-col bg-white md:ml-80 lg:ml-96"
+        >
+          <!-- Email Header -->
+          <div class="p-6 border-b border-gray-200">
+            <div class="flex items-start justify-between mb-4">
+              <h2
+                id="email-subject"
+                class="text-2xl font-bold text-gray-900"
+              ></h2>
+              <button class="text-gray-400 hover:text-gray-600 md:hidden">
+                <i class="fas fa-times text-xl"></i>
+              </button>
+            </div>
+
+            <!-- Sender Info -->
+            <div class="flex items-start justify-between">
+              <div class="flex items-center space-x-3">
+                <div
+                  id="email-avatar"
+                  class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold"
+                ></div>
+                <div>
+                  <h3
+                    id="email-sender"
+                    class="font-semibold text-gray-900"
+                  ></h3>
+                  <p class="text-sm text-gray-500">
+                    <span id="email-sender-email"></span>
+                  </p>
+                </div>
+              </div>
+              <span id="email-time" class="text-sm text-gray-500"></span>
+            </div>
+
+            <!-- Category Badges -->
+            <div id="email-categories" class="mt-4 flex flex-wrap gap-2"></div>
+          </div>
+
+          <!-- Email Content -->
+          <div class="flex-1 overflow-y-auto p-6">
+            <div class="max-w-4xl mx-auto bg-white">
+              <div id="email-content" class="space-y-4 text-gray-900"></div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div
+            class="sticky bottom-0 p-6 border-t border-gray-200 bg-gray-50 shadow-lg"
+          >
+            <div class="flex items-center space-x-3">
+              <button
+                class="px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium transition flex items-center space-x-2"
+              >
+                <i class="fas fa-reply"></i>
+                <span>Reply</span>
+              </button>
+              <button
+                class="px-6 py-2.5 bg-white hover:bg-gray-100 text-gray-700 border border-gray-300 rounded-lg font-medium transition flex items-center space-x-2"
+              >
+                <i class="fas fa-share"></i>
+                <span>Forward</span>
+              </button>
+              <button
+                class="px-4 py-2.5 bg-white hover:bg-gray-100 text-gray-700 border border-gray-300 rounded-lg transition"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div
+      id="mobile-sidebar"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden"
+    >
+      <div class="bg-white w-64 h-full shadow-xl p-6">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-xl font-bold text-gray-900">Menu</h2>
+          <button id="close-sidebar" class="text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <nav class="space-y-4">
+          <a
+            href="dashboard.html"
+            class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition"
+          >
+            <i class="fas fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+          <a
+            href="all_mail.html"
+            class="flex items-center space-x-3 text-blue-500 bg-blue-50 px-4 py-3 rounded-lg"
+          >
+            <i class="fas fa-inbox"></i>
+            <span>Inbox</span>
+          </a>
+          <a
+            href="classify_mail.html"
+            class="flex items-center space-x-3 text-gray-700 hover:text-blue-500 hover:bg-blue-50 px-4 py-3 rounded-lg transition"
+          >
+            <i class="fas fa-file-alt"></i>
+            <span>Classify Mail</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Mobile Email Detail Overlay -->
+    <div
+      id="mobile-email-detail"
+      class="hidden fixed inset-0 bg-white z-40 md:hidden overflow-y-auto"
+    ></div>
+  </body>
+</html>
