@@ -13,6 +13,40 @@ mobileMenuBtn.addEventListener("click", () => {
   }
 });
 
+function generateNavLinks() {
+  const desktopNav = document.getElementById("desktop-nav");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  if (desktopNav) {
+    desktopNav.innerHTML = navItems
+      .map(
+        (item) => `
+          <a
+            href="${item.href}"
+            class="text-gray-700 hover:text-blue-500 text-base lg:text-xl font-medium transition"
+          >${item.text}</a>
+        `
+      )
+      .join("");
+  }
+
+  if (mobileNav) {
+    const mobileLinks = navItems
+      .map(
+        (item) => `
+          <a
+            href="${item.href}"
+            class="block text-gray-700 hover:text-blue-500 hover:bg-gray-50 px-3 py-2 rounded-lg transition mobile-nav-link"
+          >${item.text}</a>
+        `
+      )
+      .join("");
+
+    // Insert mobile links before the Sign In button
+    mobileNav.innerHTML = mobileLinks + mobileNav.innerHTML;
+  }
+}
+
 // Close mobile menu when clicking on a link
 const mobileLinks = mobileMenu.querySelectorAll("a");
 mobileLinks.forEach((link) => {
@@ -148,7 +182,16 @@ const footerData = {
   ],
 };
 
+const navItems = [
+  { text: "Home", href: "#home" },
+  { text: "Key Features", href: "#features" },
+  { text: "How it works", href: "#how" },
+  { text: "About us", href: "#about" },
+];
+
 window.onload = function () {
+  generateNavLinks();
+
   const cardsContainer = document.getElementById("feature-cards-container");
   const stepsContainer = document.getElementById("how-it-works-steps");
   const teamContainer = document.getElementById("team-members");
