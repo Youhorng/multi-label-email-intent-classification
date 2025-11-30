@@ -5,7 +5,7 @@ const overviewCards = [
     icon: "fa-envelope",
     iconBg: "bg-green-100",
     iconColor: "text-green-500",
-    percentage: "+11.01%",
+    // percentage: "+11.01%",
     percentageColor: "text-green-500",
   },
   {
@@ -14,7 +14,7 @@ const overviewCards = [
     icon: "fa-envelope-open",
     iconBg: "bg-blue-100",
     iconColor: "text-blue-500",
-    percentage: "+11.01%",
+    // percentage: "+11.01%",
     percentageColor: "text-green-500",
   },
   {
@@ -23,7 +23,7 @@ const overviewCards = [
     icon: "fa-tag",
     iconBg: "bg-red-100",
     iconColor: "text-red-500",
-    percentage: "+11.01%",
+    // percentage: "+11.01%",
     percentageColor: "text-green-500",
     dynamicLabel: true,
   },
@@ -33,7 +33,7 @@ const overviewCards = [
     icon: "fa-briefcase",
     iconBg: "bg-yellow-100",
     iconColor: "text-yellow-500",
-    percentage: "+11.01%",
+    // percentage: "+11.01%",
     percentageColor: "text-green-500",
     dynamicLabel: true,
   },
@@ -58,9 +58,7 @@ function renderOverviewCards() {
       <h3 class="text-3xl font-bold text-gray-900" data-stat="${card.id}">
         0
       </h3>
-      <div class="flex items-center space-x-1 ${card.percentageColor} text-sm">
-        <span>${card.percentage}</span>
-        <i class="fas fa-arrow-up"></i>
+      <div class="flex items-center space-x-1 ${card.percentageColor} text-sm">      
       </div>
     </div>
   </div>
