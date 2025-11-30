@@ -41,6 +41,17 @@ function getCategoryColorClasses(category) {
   return colorMap[category] || "bg-gray-100 text-gray-700";
 }
 
+function fixEncoding(text) {
+  return text
+    .replace(/â/g, "’")
+    .replace(/â/g, "“")
+    .replace(/â/g, "”")
+    .replace(/â/g, "–")
+    .replace(/â/g, "—")
+    .replace(/Â©/g, "©")
+    .replace(/â¦/g, "…");
+}
+
 // Function to update email detail view
 function updateEmailDetail(email) {
   document.getElementById("email-subject").textContent = email.subject;
@@ -69,7 +80,14 @@ function updateEmailDetail(email) {
     categoriesContainer.style.display = "none";
   }
 
-  document.getElementById("email-content").innerHTML = email.content;
+  // const contentWithBreaks = (email.content || "").replace(
+  //   /(\r\n|\n|\r)/g,
+  //   "<br>"
+  // );
+  const contentWithBreaks = fixEncoding(
+    (email.content || "").replace(/(\r\n|\n|\r)/g, "<br>")
+  );
+  document.getElementById("email-content").innerHTML = contentWithBreaks;
   document.getElementById("email-detail").classList.remove("hidden");
   document.getElementById("email-detail").classList.add("md:flex");
 }
