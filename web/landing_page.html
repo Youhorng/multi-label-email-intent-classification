@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Classification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="./script/landing_page.js" defer></script>
+</head>
+<body class="m-0 p-0 w-full overflow-x-hidden ">
+
+    <header class="bg-white shadow-sm w-full sticky top-0 z-50">
+        <nav class="w-full px-4 md:px-6 py-4 flex items-center justify-between">
+                
+                <div class="flex items-center space-x-2">
+                    <img src="./images/Logo.png" alt="smart logo" class="w-auto h-10 md:h-12">
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-14 flex-1 justify-center">
+                    <a href="#home" class="text-gray-700 hover:text-blue-500 text-base lg:text-xl font-medium transition">Home</a>
+                <a href="#features" class="text-gray-700 hover:text-blue-500 text-base lg:text-xl font-medium transition">Key Features</a>
+                <a href="#how" class="text-gray-700 hover:text-blue-500 text-base lg:text-xl font-medium transition">How it works</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-500 text-base lg:text-xl font-medium transition">About us</a>
+            </div>
+            
+            <button class="hidden md:flex bg-gradient-to-l from-[#1D53CF] to-[#26A9E0] opacity-75 text-white px-4 lg:px-8 py-2 lg:py-3 rounded-lg items-center space-x-2 shadow-md transition text-sm lg:text-base">
+                <i class="fab fa-google"></i>
+                <span class="font-medium">Sign In With Google</span>
+            </button>
+
+            <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-blue-500 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-3 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-blue-500 hover:bg-gray-50 px-3 py-2 rounded-lg transition">Home</a>
+                <a href="#features" class="block text-gray-700 hover:text-blue-500 hover:bg-gray-50 px-3 py-2 rounded-lg transition">Key Features</a>
+                <a href="#how" class="block text-gray-700 hover:text-blue-500 hover:bg-gray-50 px-3 py-2 rounded-lg transition">How it works</a>
+                <a href="#about" class="block text-gray-700 hover:text-blue-500 hover:bg-gray-50 px-3 py-2 rounded-lg transition">About us</a>
+                <button class="w-full bg-gradient-to-r from-[#1D53CF] to-[#26A9E0] opacity-75 text-white px-4 py-3 rounded-lg flex items-center justify-center space-x-2 shadow-md transition">
+                    <i class="fab fa-google"></i>
+                    <span class="font-medium">Sign In with Google</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Key Features Container with Background -->
+    <div class="relative w-full">
+        
+    <section class="w-full px-6 py-16 bg-white">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+            
+            <!-- Left Content -->
+            <div class="w-full md:w-1/2 order-1">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4">
+                    Your Inbox sorted by.<br>
+                    <span class="text-blue-500">Smart Mailbox</span>
+                </h1>
+                <p class="text-base md:text-lg text-gray-600 mb-8 leading-relaxed">
+                    Say goodbye to cluttered emails. Smart Mailbox automatically classifies and groups your messages using AI, so important emails rise to the top while spam and low-priority content stay out of your way.
+                </p>
+                <button class="bg-gradient-to-r from-[#1D53CF] to-[#26A9E0] hover:from-[#1B4FCC] hover:to-[#22A7E0] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg flex items-center space-x-3 shadow-lg transition-transform transform hover:scale-105">
+                    <i class="fab fa-google text-lg md:text-xl"></i>
+                    <span class="font-semibold text-base md:text-lg">Sign In with Google</span>
+                </button>
+                <p class="text-sm text-gray-500 mt-3">No credit card required • Free to start</p>
+            </div>
+            
+            <!-- Right Content -->
+            <div class="w-full md:w-1/2 order-2 mt-8 md:mt-0">
+                <img src="./images/3 boxes.jpg" alt="3-boxes">
+            </div>
+
+        </div>
+    </section>
+        
+        <div class="relative w-full"
+            style="background-image: url('./images/Elipse Design-3.svg');
+                background-position: left center;
+                background-repeat: no-repeat;
+                background-size: 50% auto;
+           ">
+
+        </div> 
+
+    <!-- Container with Background -->
+    <div class="relative w-full"
+         style="
+            background-image: url('./images/Elipse Design-3.svg'), url('./images/Elipse Design-2.svg');
+            background-position: left top, right bottom;
+            background-repeat: no-repeat, no-repeat;
+            background-size: 50% auto, 50% auto;
+    ">
+
+     <section id="features" class="w-full px-6 py-20 relative z-10">
+    <div class="max-w-[1400px] mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3">Key Features</h2>
+        <p class="text-lg text-gray-600 mb-12">Powerful tools to revolutionize your email management</p>
+       
+        <div id="feature-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-x-12 gap-10 lg:gap-x-16 gap-y-6">
+            <!-- Generate card using Javascript -->
+        </div>
+        </div>
+    </section>
+
+        <!-- How it Works Section -->
+        <section id="how" class="w-full px-6 py-20 relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-6xl md:text-7xl font-bold text-gray-900 mb-4">How it works</h2>
+                    <p class="text-2xl text-gray-600">Get started in three simple steps</p>
+                </div>
+        
+                <div id="how-it-works-steps" class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 lg:gap-20 mb-16">
+                <!-- Generate card using Javascript -->
+                </div>
+        
+                <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl p-4 shadow-2xl">
+                    <div class="bg-gray-900 rounded-2xl p-6 relative">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition">
+                                <i class="fas fa-play text-blue-500 text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <img src="./images/demo-placeholder.png" alt="Demo" class="w-full rounded-lg opacity-40">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div
+        style = "
+            background-image: url('./images/background.svg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+        "
+    >
+
+    
+        <!-- About Us Section -->
+        <section id="about" class="w-full px-6 py-20 ">
+            <div class="w-full max-w-[1600px] mx-auto rounded-[32px]"
+                style="
+                    background-image: url('./images/about.png');
+                    background-position: center top;
+                    background-repeat: no-repeat;
+                    background-size: 140% auto;
+                "
+            >
+                <div class="px-4 md:px-8 lg:px-12 py-4 md:py-8 lg:py-12">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3">About Us</h2>
+                        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                            We're a passionate team of engineers and designers dedicated to solving email overload. Our mission is to help professionals reclaim their time and focus on what truly matters.
+                        </p>
+                    </div>
+                    <!-- Team Member Cards -->
+                    <div id="team-members" class="grid grid-cols-2 md:grid-cols-5 gap-12">
+                         <!-- Generate card using Javascript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tranforms Section -->
+        <section class="w-full px-6 py-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-black mb-4">Ready to Transform Your Inbox?</h2>
+                <p class="text-lg text-black mb-8">
+                    Join thousands of professionals who have already streamlined their email workflow
+                </p>
+                <button class="bg-white hover:bg-gray-100 text-blue-600 px-8 py-4 rounded-lg flex items-center space-x-3 shadow-lg transition mx-auto font-semibold text-lg">
+                    <i class="fab fa-google text-xl"></i>
+                    <span>Get Started with Google</span>
+                </button>
+            </div>
+        </section>
+    </div>    
+
+        <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 px-6 py-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <i class="fas fa-envelope text-blue-400 text-2xl"></i>
+                    <span class="text-xl font-bold text-white">Smart Mailbox</span>
+                </div>
+                <p class="text-sm text-gray-400">
+                    Intelligent email management powered by AI
+                </p>
+            </div>
+    
+            <div id="footer-links" class="contents">
+                <!-- Footer  -->
+            </div>
+        </div>
+    
+        <div class="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm text-gray-500">© 2025 Smart Mailbox. All rights reserved.</p>
+            <div id="social-links" class="flex space-x-4 mt-4 md:mt-0">
+                <!-- Social links  -->
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

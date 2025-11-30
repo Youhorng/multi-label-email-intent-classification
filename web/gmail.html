@@ -256,11 +256,11 @@
           }
 
           const data = await response.json();
-
           // Extract labels and scores
-          const labels = data.predictions.map((p) => p.label);
+          const predictions = data.predictions.slice(0, 2);
+          const labels = predictions.map((p) => p.label);
           const scores = {};
-          data.predictions.forEach((p) => {
+          predictions.forEach((p) => {
             scores[p.label] = p.score;
           });
 
