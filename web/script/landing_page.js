@@ -115,28 +115,28 @@ const teamMembers = [
     name: "Alex Johnson",
     role: "CEO & Founder",
     description: "Product visionary with 10+ years in email AI expert",
-    image: "./images/photo1.jpeg",
+    image: "./images/photo1.JPG",
     gradient: "from-blue-200 to-blue-400",
   },
   {
     name: "Sarah Chen",
     role: "Lead AI Engineer",
     description: "ML expert specializing in NLP and classification",
-    image: "./images/photo1.jpeg",
+    image: "./images/photo2.jpeg",
     gradient: "from-pink-200 to-pink-400",
   },
   {
     name: "Alex Johnson",
     role: "CEO & Founder",
     description: "Product visionary with 10+ years",
-    image: "./images/photo1.jpeg",
+    image: "./images/photo3.jpeg",
     gradient: "from-blue-200 to-blue-400",
   },
   {
     name: "Sarah Chen",
     role: "Lead AI Engineer",
     description: "ML expert specializing in NLP",
-    image: "./images/photo2.jpeg",
+    image: "./images/photo4.JPG",
     gradient: "from-pink-200 to-pink-400",
   },
   {
@@ -238,7 +238,7 @@ window.onload = function () {
       .map(
         (member) => `
             <div class="text-center">
-                <div class="w-42 h-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br ${member.gradient} shadow-lg">
+                <div class="max-h-[290px] w-42 mx-auto mb-3 rounded-3xl overflow-hidden bg-gradient-to-br ${member.gradient} shadow-lg">
                     <img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover">
                 </div>
                 <h4 class="font-bold text-gray-900">${member.name}</h4>

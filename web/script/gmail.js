@@ -11,6 +11,7 @@ function updateStatus(message) {
   document.getElementById("status-text").textContent = message;
 }
 
+//  Loads and initializes the Gmail API client
 function gapiLoaded() {
   gapi.load("client", async () => {
     await gapi.client.init({
@@ -24,6 +25,7 @@ function gapiLoaded() {
   });
 }
 
+// This is part of the Google authentication flow for accessing Gmail data in your app.
 function gisLoaded() {
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
@@ -35,6 +37,7 @@ function gisLoaded() {
 }
 
 function maybeStart() {
+  // Only start the authentication and data fetching process when both gapi and gis are initialized
   if (!gapiInited || !gisInited) return;
 
   tokenClient.callback = async (resp) => {
@@ -67,6 +70,7 @@ async function fetchGmailData() {
       maxResults: 50,
       q: "category:primary",
     });
+    console.log("Fetched message list:", listRes);
 
     if (!listRes.result.messages || listRes.result.messages.length === 0) {
       updateStatus("No messages found. Redirecting...");
@@ -85,6 +89,7 @@ async function fetchGmailData() {
         id: msg.id,
         format: "full",
       });
+      console.log("msgRes", msgRes);
 
       const payload = msgRes.result.payload || {};
       const headers = payload.headers || [];
