@@ -21,6 +21,7 @@ let emails = loadEmailsFromStorage();
 // Add filter functionality
 let currentLabelFilter = "all";
 let currentSortOrder = "newest";
+let currentSearchQuery = "";
 
 // Function to get category color classes
 function getCategoryColorClasses(category) {
@@ -113,11 +114,25 @@ function renderEmailList() {
 
   let filteredEmails = [...emails];
 
+  // Filter by label
   if (currentLabelFilter !== "all") {
     filteredEmails = filteredEmails.filter(
       (email) =>
         email.categories && email.categories.includes(currentLabelFilter)
     );
+  }
+
+  // Filter by search query
+  if (currentSearchQuery.trim() !== "") {
+    const query = currentSearchQuery.trim().toLowerCase();
+    filteredEmails = filteredEmails.filter((email) => {
+      return (
+        (email.subject && email.subject.toLowerCase().includes(query)) ||
+        (email.sender && email.sender.toLowerCase().includes(query)) ||
+        (email.preview && email.preview.toLowerCase().includes(query)) ||
+        (email.content && email.content.toLowerCase().includes(query))
+      );
+    });
   }
 
   // Sort emails
@@ -285,6 +300,17 @@ document.addEventListener("DOMContentLoaded", () => {
         sortDropdown.classList.add("hidden");
         renderEmailList();
       });
+    });
+  }
+
+  // Search functionality
+  const searchInput = document.querySelector(
+    'input[type="text"][placeholder="Search mail..."]'
+  );
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      currentSearchQuery = this.value;
+      renderEmailList();
     });
   }
 
